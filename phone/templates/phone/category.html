@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load extra_tags %}
+
+{% block page_title %}
+    {% if category %}
+        Numuri kas sākas ar {{ category }}...
+    {% else %}
+        Izvēlies numura sākuma ciparus
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="panel" style="padding: 30pt">
+
+    <h1>
+        Telefonu grāmata<br>
+        {% if category %}
+            <small>Numuri kas sākas ar {{ category }}...</small>
+        {% else %}
+            <small>Izvēlies numura sākuma ciparus</small>
+        {% endif %}
+    </h1>
+
+    <br>
+
+    {% if namespace_length > 0 %}
+        <div class="panel panel-default">
+            <table class="table table-bordered">
+                {% for row in namespace %}
+                    <tr>
+                        {% for col in row %}
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+
+                                    {% if col|is_phone or col|is_category %}
+                                        <div class="btn btn-primary btn-xs disabled">
+                                            {{ col }}
+                                        </div>
+                                    {% endif %}
+
+                                    {% if col|is_phone %}
+                                        <a href="{% url "phone.number" number=col %}" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-earphone"></i>
+                                        </a>
+                                    {% endif %}
+
+                                    {% if col|length < 8 and col|is_category %}
+                                        <a href="{% url "phone.category" category=col %}" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-circle-arrow-right"></i>
+                                        </a>
+                                    {% endif %}
+
+                                </div>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% else %}
+        Šajā kategorijā diemžēl nav neviena reģistrēta tālruņa.
+    {% endif %}
+
+</div>
+
+{% endblock %}

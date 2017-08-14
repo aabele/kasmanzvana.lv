@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block page-body %}
+    <div id="front" class="panel jumbotron">
+        <div class="jumbo-wrapper">
+            <h1>Kas man zvana?</h1>
+            <p>Noskaidro nezināmā numura iespējamo īpašnieku</p>
+
+            <form class="form-inline" id="number-form" method="post" action=".">
+                <div class="form-group">
+                    <label class="sr-only" for="number">Ievadiet numuru</label>
+                    <div class="input-group">
+                        <input type="number"
+                               class="form-control input-lg"
+                               id="number"
+                               placeholder="Ievadi numuru"
+                               data-title="Numuru meklētājs"
+                               data-content="Ja vēlies apskatīties citus numurus, ievadi tos šeit. Ievadei vari izmantot ciparu taustiņus"
+                                >
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        {% include "phone/_snippets/footer-menu.html" %}
+
+    </div>
+{% endblock %}

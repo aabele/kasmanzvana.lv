@@ -1,0 +1,10 @@
+Vārds: {{ obj.name }}
+Epasts: {{ obj.email }}
+
+Komentārs:
+{{ obj.comment }}
+
+--
+
+Rediģēšanas URL (derīgs nedēļu):
+{{ PUBLIC_URL }}{% url "admin.comment" comment_hash=obj.protected_hash %}

@@ -1,0 +1,6 @@
+
+    <ol class="breadcrumb">
+        {% for cat in categories %}
+            <li><a href="{% url "phone.category" cat.0 %}">{{ cat.1 }}</a></li>
+        {% endfor %}
+    </ol>

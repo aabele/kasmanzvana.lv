@@ -1,0 +1,107 @@
+{% extends "phone/base.html" %}
+{% load extra_tags %}
+
+{% block page_title %}{{ COUNTRY_PREFIX }} {{ number }}{% endblock %}
+
+{% block page_description %}{{ comments.0.comment|striptags }}{% endblock %}
+
+{% block extra_head %}
+    <script>
+
+        "use strict";
+
+        var phone = {
+            "id": "{{ number }}"
+        };
+
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="panel" style="padding: 2em 2em 1em;">
+        <h1>
+            <span>
+                <a href="{{ request.path }}" title="{{ number }}">
+                    {{ COUNTRY_PREFIX }} {{ number }}
+                </a>
+            </span>
+            <br> Zvana no šī nepazīstamā numura?
+        </h1>
+
+        <hr>
+
+        {% if links %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Atradām ar šo numuru saistītus resursus</h4>
+                </div>
+                <!--<div class="panel-body">-->
+                    <ul class="list-group">
+                        {% for link in links %}
+                            <li class="list-group-item">
+                                <a href="{{ link.url }}"
+                                   rel="nofollow"
+                                   data-target="new-window"
+                                   title="{{ link.title }}">
+                                    {{ link.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                <!--</div>-->
+            </div>
+        {% endif %}
+
+        {% if comments %}
+            {% for comment in comments %}
+                {% if not forloop.first %}<hr>{% endif %}
+                <div>
+                    {{ comment.comment|linebreaks }}
+                    <div class="meta">
+                        {{ comment.name }} @
+                        {{ comment.insert_date }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <br>
+
+        <form method="post" action="{% url "phones:add_comment" %}" class="panel panel-default well" id="comment-form" style="display: none">
+
+            <div>
+                <h4>Tev ir zināms kas ir šis par numuru?</h4>
+                <p>
+                  Pastāsti par to mums.
+                </p>
+            </div>
+
+            {% csrf_token %}
+
+            <input type="hidden" name="phone" value="{{ number }}">
+
+            <div class="form-group{% if form.body.errors %} has-error{% endif %}">
+                <label for="{{ form.body.auto_id }}">Komentārs</label>
+                {{ form.body }}
+                {% if form.body.errors %}
+                    <span id="error-{{ form.body.auto_id }}" class="help-block">
+                        {% for error in form.body.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </span>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="comment-form-submit">
+                Komentēt
+            </button>
+
+        </form>
+
+    </div>
+
+    {% breadcrumbs number %}
+
+{% endblock %}
+{% block sidebar %}{% include "phone/_snippets/phone-sidebar.html" %}{% endblock %}

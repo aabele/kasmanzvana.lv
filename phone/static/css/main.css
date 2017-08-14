@@ -1,0 +1,125 @@
+* {
+    outline: none !important;
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url(/static/background1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+#container {
+    padding: 10em 3em;
+}
+
+#front-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+#phone {
+    text-align: center;
+    margin: auto;
+}
+
+#phone table td {
+    cursor: pointer;
+}
+
+.green {
+    color: white;
+    background: seagreen;
+}
+
+.opacity {
+    opacity: 0.9;
+}
+
+.jumbotron {
+    text-align: left;
+}
+
+#operator {
+    padding: 20px 0
+}
+
+.jumbo-wrapper {
+    padding: 0 20px;
+}
+
+.jumbotron {
+    margin: 0;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 0;
+    background: none;
+    width:100%;
+    height:100%;
+    text-align:center;
+    z-index: 1;
+    position:absolute;
+    left:0;
+    top: 0;
+}
+
+#agreement{
+    padding-top: 10%}
+
+#front{
+    padding-top: 20%}
+
+#contacts{
+    padding-top: 25%}
+
+.global-menu {
+    text-align: left;
+    position: absolute;
+    top: 3em;
+    left: 2em;
+    margin: auto;
+    width: 50%;
+    background: none;
+}
+
+.global-menu a, .global-menu a:hover, .global-menu a:visited {
+    color: #337AB7;
+}
+
+.global-menu{
+    color: #fff
+}
+
+.jumbo-wrapper a{
+    color: #fff}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#page-body h1 span{
+    font-size:45pt;
+}
+
+#page-body h1 a:hover{
+    text-decoration: none;
+}

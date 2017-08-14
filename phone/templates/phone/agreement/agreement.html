@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block page_title %}Saistību atruna{% endblock %}
+
+{% block body %}
+    <div class="panel" style="padding: 3em 3em 2em">
+        <div class="panel panel-default">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Informācijas ievietotājs ir atbildīgs par ievietotās
+                    informācijas saturu.
+                </li>
+                <li class="list-group-item">
+                    Komentāri ar nepieņemamu saturu tiks dzēsti,
+                    autoram tiks bloķēta pieeja lapai, dati problēmu
+                    gadījumā nodoti policijai.
+                </li>
+                <li class="list-group-item">
+                    Jebkāda veida reklāma tiks dzēsta.
+                </li>
+                <li class="list-group-item">
+                    Neievietojiet citu personu e-pasta adreses un datus par
+                    citām personām. Neievietojiet informāciju citas personas
+                    vārdā.
+                </li>
+                <li class="list-group-item">
+                    Jebkura informācija var tikt dzēsta, nesniedzot nekādus
+                    paskaidrojumus.
+                </li>
+                <li class="list-group-item">
+                    Šie noteikumi var tikt mainīti bez brīdinājuma.
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url "phone.page.takedown" %}">
+                      Lūdzu izlasiet pirms pieprasiet dzēst informāciju!
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+{% endblock %}

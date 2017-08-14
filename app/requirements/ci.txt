@@ -1,1 +1,5 @@
 -r base.txt
+raven==6.0.0
+factory-boy==2.8.1
+django_nose==1.4.4
+coverage==4.4.1

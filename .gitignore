@@ -1,0 +1,10 @@
+.idea/*
+.tox/*
+env/*
+cover/*
+storage/*
+.coverage
+*.pyc
+db.sqlite3
+tests-*.xml
+nosetests.xml

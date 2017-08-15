@@ -22,6 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=d%d#9#kit(n%mxq^tt+8+^m3a(rt7!!s64eocgra_u-3mmw)@'
 
+HASHID_FIELD_SALT = '%*_gc)r-*fokann=v*xq1+ood)2*9=w%o80&+!d9tf2^r_m4le'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 
     'phone',
     'user',
+    'website',
 
 ]
 

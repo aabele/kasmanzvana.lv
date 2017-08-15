@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "website/base.html" %}
 
 {% block page_title %}Saistību atruna{% endblock %}
 
@@ -31,7 +31,7 @@
                     Šie noteikumi var tikt mainīti bez brīdinājuma.
                 </li>
                 <li class="list-group-item">
-                    <a href="{% url "phone.page.takedown" %}">
+                    <a href="{% url "website:takedown" %}">
                       Lūdzu izlasiet pirms pieprasiet dzēst informāciju!
                     </a>
                 </li>

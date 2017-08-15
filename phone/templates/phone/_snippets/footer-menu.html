@@ -1,17 +1,18 @@
 
 <ol class="breadcrumb global-menu">
 
-    {% url "phone.page.front" as link_url %}
+    {% url "website:front" %}
+    {% url "website:front" as link_url %}
     {% if link_url == request.path %}
         <li>Sākums</li>
     {% else %}
         <li><a href="{{ link_url }}" title="Sākums">Sākums</a></li>
     {% endif %}
 
-    {% url "phone.category.all" as link_url %}
+    {% url "phones:category_index" as link_url %}
     <li><a href="{{ link_url }}" title="Numuri">Numuri</a></li>
 
-    {% url "phone.page.agreement" as link_url %}
+    {% url "website:agreement" as link_url %}
     {% if link_url == request.path %}
         <li>Saistību atruna</li>
     {% else %}

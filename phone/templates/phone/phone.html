@@ -36,7 +36,6 @@
                 <div class="panel-heading">
                     <h4>Atradām ar šo numuru saistītus resursus</h4>
                 </div>
-                <!--<div class="panel-body">-->
                     <ul class="list-group">
                         {% for link in links %}
                             <li class="list-group-item">
@@ -49,24 +48,21 @@
                             </li>
                         {% endfor %}
                     </ul>
-                <!--</div>-->
             </div>
         {% endif %}
 
-        {% if comments %}
-            {% for comment in comments %}
+        {% if object.visible_comments %}
+            {% for comment in object.visible_comments %}
                 {% if not forloop.first %}<hr>{% endif %}
                 <div>
-                    {{ comment.comment|linebreaks }}
+                    {{ comment.body|linebreaks }}
                     <div class="meta">
-                        {{ comment.name }} @
+                        {% include "phone/_snippets/user.html" with user=comment.author %} @
                         {{ comment.insert_date }}
                     </div>
                 </div>
             {% endfor %}
         {% endif %}
-
-        <br>
 
         <form method="post" action="{% url "phones:add_comment" %}" class="panel panel-default well" id="comment-form" style="display: none">
 

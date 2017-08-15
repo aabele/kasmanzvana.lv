@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     url(r'^', include('phone.urls', namespace='phones')),
+    url(r'^', include('website.urls', namespace='website')),
 ]

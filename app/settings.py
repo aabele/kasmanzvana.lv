@@ -157,3 +157,8 @@ def get_env_setting(setting):
     except KeyError:
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
+
+RAVEN_CONFIG = {}
+
+CELERY_ENABLED = False
+CELERY_BROKER_URL = BROKER_URL = 'redis://localhost:6379/0'

@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.draugiem',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+
     'phone',
     'user',
     'website',

@@ -101,3 +101,13 @@ class Comment(mixins.HashidMixin, models.Model):
         :return: string
         """
         return reverse('phones:comment_profile', kwargs={'pk': self.get_hashid_pk()})
+
+    def is_admin(self):
+        """
+        Check if the comment has been left by the admin user
+        :return: Boolean
+        """
+        if not self.author:
+            return False
+
+        return self.author.is_staff == True

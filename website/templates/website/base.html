@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" class="full">
 <head>
@@ -5,12 +6,13 @@
     <meta name="google-site-verification" content="eIlNBHJx1UN-EqXAPcUXn8WwEoBjMAKiHzhuSsBbpW8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block page_title %}Nezināms numurs{% endblock %} - Kas man zvana? - Latvijas reversā telefonu grāmata</title>
+    <title>{% block page_title %}Nezināms numurs{% endblock %} - Sociālais tīkls telefonu lietotājiem</title>
     <meta name="description" content="{% block page_description %}{% endblock %}">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/main.css">
-    <link rel="icon" href="/static/favicon.png">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="icon" href="{% static "favicon.png" %}">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>

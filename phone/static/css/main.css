@@ -1,5 +1,6 @@
 * {
     outline: none !important;
+    font-family: 'Roboto', "proxima-nova", "Proxima Nova", sans-serif;
 }
 
 .full {
@@ -126,4 +127,15 @@ body {
 
 .padding0-1 {
     padding: 0 0 1em;
+}
+
+.padding1 {
+    padding: 1em 0;
+}
+.padding2 {
+    padding: 2em 0;
+}
+
+.btn, input, textarea, select, .well {
+    border-radius: 0 !important;
 }

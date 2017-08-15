@@ -1,28 +1,65 @@
 {% extends "phone/base.html" %}
+{% load account %}
+{% load socialaccount %}
 
 {% block body %}
 
-    <div class="panel" style="padding: 2em 2em 1em;">
-        <h1>
-            <span>
-                {{ object }}
-            </span>
-        </h1>
+    <div class="panel text-center" style="padding: 2em 2em 0">
 
-        <hr>
+        {% if request.user.is_authenticated %}
+        {% else %}
+            <h1>
+                Gandrīz saglabāts
+            </h1>
+            <hr>
+            <div class="lead">
+                <p>
+                    Komentāru mēs pieglabājām, bet lai to publicētu pieslēdzies ar sociālo tīklu kontu.
+                    Neuztraucies - tas aizņems tikai dažas sekundes.
+                </p>
+            </div>
 
-        <p class="lead">
-            Komentāru mēs pieglabājām, bet lai to publicētu pieslēdzies sociālo tīklu kontu.
-            Neuztraucies - tas aizņems tikai dažas sekundes.
-        </p>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <div class="row">
+                        {% get_providers as socialaccount_providers %}
+                        {% for provider in socialaccount_providers %}
+                            <div class="col-md-3">
+                                {% if provider.id == 'twitter' %}
+                                    <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}" class="btn btn-primary btn-block" style="background:#1B95E0;border-color:#1B95E0;">
+                                        {{ provider.name }}
+                                    </a>
+                                {% endif %}
+                                {% if provider.id == 'draugiem' %}
+                                    <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}" class="btn btn-primary btn-block" style="background:#E16C00;border-color:#E16C00;">
+                                        {{ provider.name }}
+                                    </a>
+                                {% endif %}
+                                {% if provider.id == 'facebook' %}
+                                    <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}" class="btn btn-primary btn-block" style="background: #4267b2">
+                                        {{ provider.name }}
+                                    </a>
+                                {% endif %}
+                                {% if provider.id == 'google' %}
+                                    <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}" class="btn btn-primary btn-block" style="background: #4285F4">
+                                        {{ provider.name }}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="lead padding1">
+                        <p>
+                            Reģistrēti lietotāji var:<br>
+                            * sekot līdzi sev interesējošiem numuriem.<br>
+                            * mainīt reitingu - novērtēt ar celt/necelt (drīzumā)<br>
+                            * verificēt savu numuru un to pārvaldīt (drīzumā)
+                        </p>
+                    </div>
 
-
-        <p class="lead">
-            Reģistrēti lietotāji var:<br>
-            * sekot līdzi sev interesējošiem numuriem.<br>
-            * verificēt savu numuru un to pārvaldīt.
-            * mainīt numuru reitingu
-        </p>
+                </div>
+            </div>
+        {% endif %}
 
     </div>
 {% endblock %}

@@ -84,6 +84,10 @@ class Comment(mixins.HashidMixin, models.Model):
     """
     phone = models.ForeignKey('phone.Phone')
     body = models.TextField()
+
+    # Allow to display old comments from file based engine
+    legacy = models.BooleanField(default=False, editable=False)
+
     anonymous_session = models.CharField(max_length=200, blank=True, null=True)
     author = models.ForeignKey(user_model, blank=True, null=True)
     insert_date = models.DateTimeField(auto_now_add=True)

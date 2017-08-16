@@ -19,4 +19,10 @@
         <li><a href="{{ link_url }}" title="Saistību atruna">Saistību atruna</a></li>
     {% endif %}
 
+    {% url "website:contacts" as link_url %}
+    {% if link_url == request.path %}
+        <li>Kontakti</li>
+    {% else %}
+        <li><a href="{{ link_url }}" title="Kontakti">Kontakti</a></li>
+    {% endif %}
 </ol>

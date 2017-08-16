@@ -22,5 +22,6 @@ class Command(BaseCommand):
             comment = models.Comment(
                 author=author,
                 phone=number,
-                body='Atradām ka šis numurs ir norādīts pie <a href="{1}">{0}</a>'.format(item.get("title"), item.get('url')))
+                body='Atradām ka šis numurs ir norādīts pie <a href="{1}">{0}</a>'.format(
+                    item.get("title"), item.get('url')))
             comment.save()

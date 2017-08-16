@@ -114,4 +114,4 @@ class Comment(mixins.HashidMixin, models.Model):
         if not self.author:
             return False
 
-        return self.author.is_staff == True
+        return self.author.is_staff is True

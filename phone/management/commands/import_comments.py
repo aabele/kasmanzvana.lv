@@ -22,7 +22,8 @@ class Command(BaseCommand):
             for comment in value:
                 author = None
                 if comment.get('email'):
-                    author, _ = models.user_model.objects.get_or_create(email=comment.get('email'), first_name=comment.get('name'))
+                    author, _ = models.user_model.objects.get_or_create(
+                        email=comment.get('email'), first_name=comment.get('name'))
 
                 c = models.Comment(
                     author=author,

@@ -1,0 +1,41 @@
+{% extends "website/base.html" %}
+{% load i18n %}
+
+{% block page_title %}Kontakti{% endblock %}
+
+{% block body-header %}
+    <div class="jumbotron text-center" id="front-jumbo">
+        <h1>
+            <a href="{{ request.path }}">
+                Rakstiet mums
+            </a>
+        </h1>
+        <p>
+            {% if request.GET.action != 'ok'%}
+                Jautājumi vai ieteikumi?<br>
+                Sūtiet mums ziņu un mēs atbildēsim drīzākajā laikā.
+            {% else %}
+                Mēs saņēmām ziņu un sazināsimies tuvākajā laikā.
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}
+
+{% block body %}
+        <div class="row padding4">
+            <div class="col-md-6 col-md-offset-3">
+                {% include "website/includes/form.html" with submit_text="Sūtīt" %}
+            </div>
+        </div>
+{% endblock %}
+
+{% block extra_head %}
+
+    <script>
+        $(function(){
+            $("input[type=text], textarea").addClass("input-lg");
+            $(".btn").addClass("btn-lg");
+        });
+    </script>
+
+{% endblock %}

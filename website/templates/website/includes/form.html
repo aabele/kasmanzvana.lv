@@ -1,0 +1,15 @@
+{% load bootstrap %}
+
+{% if not fields_only %}
+    <form role="form" action="{{ request.get_full_path }}" method="post" class="form">
+        {% csrf_token %}
+{% endif %}
+    {{ form|bootstrap_inline }}
+    <div class="form-group">
+        <button type="submit" class="btn btn-secondary">
+            {{ submit_text }}
+        </button>
+    </div>
+{% if not fields_only %}
+    </form>
+{% endif %}

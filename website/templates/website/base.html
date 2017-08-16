@@ -19,7 +19,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="/static/js/common.js"></script>
+    <script src="{% static "js/common.js" %}"></script>
 
     {% block extra_head %}{% endblock %}
 
@@ -33,9 +33,31 @@
 
         <div class="container">
             <div class="row padding1">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     {% include "phone/_snippets/footer-menu.html" %}
                 </div>
+                <div class="col-md-4 text-center">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color:#f4f4f4">
+                                {{ message }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% if request.user.is_authenticated %}
+                    <div class="col-md-4 text-right">
+                        <ol class="breadcrumb global-menu">
+
+                            <li>{% include "phone/_snippets/user.html" with user=request.user %}</li>
+                            <li>
+                                <a href="{% url "account_logout" %}?next={{ request.path }}">
+                                    Atslēgties
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                {% endif %}
             </div>
         </div>
 
@@ -72,22 +94,6 @@
                 </div>
             </div>
         </div>
-
-
-        {% if messages %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 padding1-0 text-center">
-                        {% for message in messages %}
-                            <p>
-                                {{ message }}
-                            </p>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-
 
         {% block page-body %}
 

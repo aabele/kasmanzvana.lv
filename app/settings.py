@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
 
+    'twitter_bootstrap',
+    'bootstrapform',
+
     'phone',
     'user',
     'website',
@@ -167,3 +170,5 @@ RAVEN_CONFIG = {}
 
 CELERY_ENABLED = False
 CELERY_BROKER_URL = BROKER_URL = 'redis://localhost:6379/0'
+
+ACCOUNT_LOGOUT_ON_GET = True

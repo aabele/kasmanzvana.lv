@@ -14,19 +14,19 @@
                     <div class="col-md-4">
                         {% if provider.id == 'twitter' %}
                             <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}"
-                               class="btn btn-primary btn-block" style="background:#1B95E0;border-color:#1B95E0;">
+                               class="btn btn-primary btn-lg btn-block" style="background:#1B95E0;border-color:#1B95E0;">
                                 {{ provider.name }}
                             </a>
                         {% endif %}
                         {% if provider.id == 'draugiem' %}
                             <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}"
-                               class="btn btn-primary btn-block" style="background:#E16C00;border-color:#E16C00;">
+                               class="btn btn-primary btn-lg btn-block" style="background:#E16C00;border-color:#E16C00;">
                                 {{ provider.name }}
                             </a>
                         {% endif %}
                         {% if provider.id == 'facebook' %}
                             <a href="{% provider_login_url provider.id process="login" scope=scope auth_params=auth_params %}&next={{ request.path }}"
-                               class="btn btn-primary btn-block" style="background: #4267b2">
+                               class="btn btn-primary btn-lg btn-block" style="background: #4267b2">
                                 {{ provider.name }}
                             </a>
                         {% endif %}

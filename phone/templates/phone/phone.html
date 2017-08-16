@@ -54,10 +54,14 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="meta">
-                                        <i class="fa fa-user" aria-hidden="true"></i> {% include "phone/_snippets/user.html" with user=comment.author %} @
-                                        {{ comment.insert_date }}
-                                    </div>
+                                    {% spaceless %}
+                                        <div class="meta">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <a href="{{ comment.author.get_absolute_url }}">
+                                                {% include "phone/_snippets/user.html" with user=comment.author %}
+                                            </a> @ {{ comment.insert_date }}
+                                        </div>
+                                    {% endspaceless %}
                                 </div>
                             {% endfor %}
                         </div>
@@ -68,7 +72,7 @@
             </div>
 
 
-            <form method="post" action="{% url "phones:add_comment" %}" class="" id="comment-form" style="display: none">
+            <form method="post" action="{% url "phones:add_comment" %}" id="comment-form" style="display: none">
 
                 <div class="padding0-1">
                     <h1>

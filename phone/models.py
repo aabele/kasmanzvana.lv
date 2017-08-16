@@ -118,6 +118,6 @@ class Comment(mixins.HashidMixin, models.Model):
         return self.author.is_staff is True
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        if not (self.pk and self.insert_date):
             self.insert_date = now()
         super().save(*args, **kwargs)

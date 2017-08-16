@@ -1,0 +1,15 @@
+{% extends "website/base.html" %}
+
+{% block page_title %}{% include "phone/_snippets/user.html" with user=object %}{% endblock %}
+
+{% block body-header %}
+    <div class="jumbotron text-center" id="front-jumbo">
+        <h1>
+            <a href="{{ object.get_absolute_url }}">
+                {% include "phone/_snippets/user.html" with user=object %}
+            </a>
+        </h1>
+        <p>Reģistrējies {{ object.date_joined|date }}</p>
+    </div>
+{% endblock %}
+{% block page-body %}{% endblock %}

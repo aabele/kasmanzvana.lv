@@ -36,10 +36,13 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    <h1>
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        Apmeklētāju komentāri
+                    </h1>
+                    <hr>
                     {% if object.visible_comments %}
-                        <h1>Apmeklētāju komentāri</h1>
-                        <hr>
-                        <div class="padding1">
+                         <div class="padding1">
                             {% for comment in object.visible_comments %}
                                 {% if not forloop.first %}<hr>{% endif %}
                                 <div>
@@ -52,12 +55,14 @@
                                     </div>
 
                                     <div class="meta">
-                                        {% include "phone/_snippets/user.html" with user=comment.author %} @
+                                        <i class="fa fa-user" aria-hidden="true"></i> {% include "phone/_snippets/user.html" with user=comment.author %} @
                                         {{ comment.insert_date }}
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
+                    {% else %}
+                        <p>Pagaidām vēl nav informācijas.</p>
                     {% endif %}
                 </div>
             </div>
@@ -66,7 +71,10 @@
             <form method="post" action="{% url "phones:add_comment" %}" class="" id="comment-form" style="display: none">
 
                 <div class="padding0-1">
-                    <h1>Tev ir zināms kas ir šis par numuru?</h1>
+                    <h1>
+                        <i class="fa fa-commenting" aria-hidden="true"></i>
+                        Tev ir zināms kas ir šis par numuru?
+                    </h1>
                 </div>
 
                 {% csrf_token %}

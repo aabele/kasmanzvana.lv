@@ -37,16 +37,23 @@
 
     <div class="row padding4">
         <div class="col-md-12">
-            <h1>Jaunākais Portālā</h1>
+            <h1>
+                Jaunākais Portālā
+            </h1>
             <hr>
             <div class="row">
                 {% for item in latest_comments %}
                     <div class="col-md-4">
                         {% if forloop.counter < 4 %}
                             <div class="padding0-1">
-                                <a href="">{% include "phone/_snippets/user.html" with user=item.author %}</a> par numuru
-                                <a href="{% url "phones:details" number=item.phone %}">{{ COUNTRY_PREFIX }} {{ item.phone }}</a> <br>
-                                {{ item.insert_date }}
+                                <a href="{{ item.author.get_absolute_url }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    {% include "phone/_snippets/user.html" with user=item.author %}
+                                </a> par numuru
+                                <a href="{% url "phones:details" number=item.phone %}">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    {{ COUNTRY_PREFIX }} {{ item.phone }}
+                                </a>
                             </div>
                             <div class="padding0-1">
                                 {% if item.is_admin %}
@@ -54,6 +61,9 @@
                                 {% else %}
                                     {{ item.body }}
                                 {% endif %}
+                                <p class="padding1">
+                                    {{ item.insert_date }}
+                                </p>
                             </div>
                         {% endif %}
                     </div>

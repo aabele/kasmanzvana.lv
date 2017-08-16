@@ -16,4 +16,5 @@ urlpatterns = [
 
     url(r'^', include('phone.urls', namespace='phones')),
     url(r'^', include('website.urls', namespace='website')),
+    url(r'^', include('user.urls', namespace='users')),
 ]

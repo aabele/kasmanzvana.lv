@@ -18,10 +18,6 @@ class Command(BaseCommand):
         data = json.loads(f.read())
         author = models.user_model.objects.get(pk=1)
         for item in data:
-            print('Processing %s' % item.get("title"))
-            print('Processing %s' % item.get("number"))
-            print('Processing %s' % item.get("url"))
-
             number, _ = models.Phone.objects.get_or_create(phone=item.get("number"))
             comment = models.Comment(
                 author=author,

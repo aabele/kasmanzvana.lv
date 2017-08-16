@@ -17,9 +17,6 @@ class Command(BaseCommand):
         f = open(file_name, 'r')
         data = json.loads(f.read())
         for key, value in data.items():
-            print('Processing %s' % key)
-            print(key)
-            print(value)
             number, _ = models.Phone.objects.get_or_create(phone=key)
 
             for comment in value:
@@ -31,5 +28,5 @@ class Command(BaseCommand):
                     author=author,
                     legacy=False if author else True,
                     phone=number,
-                    body=c.get('comment'))
+                    body=comment.get('comment'))
                 c.save()

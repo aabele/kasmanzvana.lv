@@ -1,10 +1,10 @@
 * {
     outline: none !important;
     font-family: 'Roboto', "proxima-nova", "Proxima Nova", sans-serif;
+    color: #334252;
 }
 
 .full {
-    width: 100%;
     height: 100%;
 }
 
@@ -17,17 +17,26 @@ body {
 }
 
 #wrapper {
-    width: 100%;
     height: 100%;
-}
-
-#container {
-    padding: 10em 3em;
+    background: #ffffff !important;
 }
 
 #front-wrapper {
     width: 100%;
     text-align: center;
+}
+
+#front-jumbo, #front-jumbo p {
+    background:none;
+    color: #f4f4f4 !important;
+}
+#front-jumbo a {
+    color: #f4f4f4;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: lighter !important;
 }
 
 #phone {
@@ -48,63 +57,26 @@ body {
     opacity: 0.9;
 }
 
-.jumbotron {
-    text-align: left;
-}
-
 #operator {
     padding: 20px 0
 }
 
-.jumbo-wrapper {
-    padding: 0 20px;
+#agreement {
+    padding-top: 10%
 }
 
-.jumbotron {
-    margin: 0;
-    overflow: hidden;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: 0;
+#contacts {
+    padding-top: 25%
+}
+
+.global-menu, .global-menu li, .global-menu a{
     background: none;
-    width:100%;
-    height:100%;
-    text-align:center;
-    z-index: 1;
-    position:absolute;
-    left:0;
-    top: 0;
+    color: #fff !important;
 }
 
-#agreement{
-    padding-top: 10%}
-
-#front{
-    padding-top: 20%}
-
-#contacts{
-    padding-top: 25%}
-
-.global-menu {
-    text-align: left;
-    position: absolute;
-    top: 3em;
-    left: 2em;
-    margin: auto;
-    width: 50%;
-    background: none;
-}
-
-.global-menu a, .global-menu a:hover, .global-menu a:visited {
-    color: #337AB7;
-}
-
-.global-menu{
+.jumbo-wrapper a {
     color: #fff
 }
-
-.jumbo-wrapper a{
-    color: #fff}
 
 .overlay {
     width: 100%;
@@ -117,11 +89,11 @@ body {
     z-index: 0;
 }
 
-#page-body h1 span{
-    font-size:45pt;
+#page-body h1 span {
+    font-size: 45pt;
 }
 
-#page-body h1 a:hover{
+#page-body h1 a:hover {
     text-decoration: none;
 }
 
@@ -132,10 +104,24 @@ body {
 .padding1 {
     padding: 1em 0;
 }
+
 .padding2 {
     padding: 2em 0;
 }
 
+.padding3 {
+    padding: 3em 0;
+}
+
+.padding4 {
+    padding: 4em 0;
+}
+
 .btn, input, textarea, select, .well {
     border-radius: 0 !important;
+}
+
+.borderless {
+    border: 0 !important;
+    border-image-width:0;
 }

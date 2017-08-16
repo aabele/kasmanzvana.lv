@@ -1,33 +1,66 @@
 {% extends "website/base.html" %}
-{% block page-body %}
-    <div id="front" class="panel jumbotron">
-        <div class="jumbo-wrapper">
-            <h1>Kas man zvana?</h1>
-            <p>Noskaidro nezināmā numura iespējamo īpašnieku</p>
 
-            <form class="form-inline" id="number-form" method="post" action=".">
-                <div class="form-group">
-                    <label class="sr-only" for="number">Ievadiet numuru</label>
-                    <div class="input-group">
-                        <input type="number"
-                               class="form-control input-lg"
-                               id="number"
-                               placeholder="Ievadi numuru"
-                               data-title="Numuru meklētājs"
-                               data-content="Ja vēlies apskatīties citus numurus, ievadi tos šeit. Ievadei vari izmantot ciparu taustiņus"
-                                >
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-success btn-lg">
-                                <span class="glyphicon glyphicon-earphone"></span>
-                            </button>
-                        </span>
+{% block body %}
+
+    {% include "phone/_snippets/login-block.html" %}
+
+    <div class="row padding3">
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </p>
+            <h1>Nepalaid garām</h1>
+            <p>
+                Seko līdzi sev interesējošiem numuriem un saņem ziņu tiklīdz mēs par tiem uzzinām kautko jaunu.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </p>
+            <h1>Vērtē numurus</h1>
+            <p>
+                (Drīzumā) Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            </p>
+            <h2>Verificē savu numuru</h2>
+            <p>
+                (Drīzumā) Verificē savu numuru un pārvaldi to, uzzini sava numura sekotājus un noskaidro kāpēc,
+                publicē oficiālu kontaktinformāciju.
+            </p>
+        </div>
+    </div>
+
+    <div class="row padding4">
+        <div class="col-md-12">
+            <h1>Jaunākais Portālā</h1>
+            <hr>
+            <div class="row">
+                {% for item in latest_comments %}
+                    <div class="col-md-4">
+                        {% if forloop.counter < 4 %}
+                            <div class="padding0-1">
+                                <a href="">{% include "phone/_snippets/user.html" with user=item.author %}</a> par numuru
+                                <a href="{% url "phones:details" number=item.phone %}">{{ COUNTRY_PREFIX }} {{ item.phone }}</a> <br>
+                                {{ item.insert_date }}
+                            </div>
+                            <div class="padding0-1">
+                                {% if item.is_admin %}
+                                    {{ item.body|safe }}
+                                {% else %}
+                                    {{ item.body }}
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-            </form>
-
+                {% endfor %}
+            </div>
         </div>
 
-        {% include "phone/_snippets/footer-menu.html" %}
-
     </div>
+
 {% endblock %}

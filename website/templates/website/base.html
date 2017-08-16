@@ -26,15 +26,52 @@
     <script>
         $(space.start);
     </script>
-
 </head>
-    <body class="full">
+<body>
 
-        <div class="overlay"></div>
+    <div class="global-wrapper">
 
-        <div class="global-wrapper full">
+        <div class="container">
+            <div class="row padding1">
+                <div class="col-md-12">
+                    {% include "phone/_snippets/footer-menu.html" %}
+                </div>
+            </div>
+        </div>
 
-            {% include "phone/_snippets/footer-menu.html" %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% block body-header %}
+                        <div class="jumbotron text-center" id="front-jumbo">
+                            <h1>Kas man zvana?</h1>
+                            <p>Noskaidro nezināmā numura iespējamo īpašnieku</p>
+
+                            <form class="form-inline" id="number-form" method="post" action=".">
+                                <div class="form-group">
+                                    <label class="sr-only" for="number">Ievadiet numuru</label>
+                                    <div class="input-group">
+                                        <input type="number"
+                                               class="form-control input-lg"
+                                               id="number"
+                                               maxlength="8"
+                                               placeholder="Ievadi numuru"
+                                               data-title="Numuru meklētājs"
+                                               data-content="Ja vēlies apskatīties citus numurus, ievadi tos šeit. Ievadei vari izmantot ciparu taustiņus"
+                                                >
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                <span class="glyphicon glyphicon-earphone"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
 
 
         {% if messages %}
@@ -54,10 +91,10 @@
 
         {% block page-body %}
 
-            <div id="wrapper" class="full">
+            <div id="wrapper">
 
-                <div id="container" class="container">
-                    <div class="row opacity">
+                <div class="container">
+                    <div class="row">
                         <div class="col-md-12">
                             <div id="page-body" class="col-md-10 col-md-offset-1">
                                 {% block body %}{% endblock %}
@@ -70,55 +107,53 @@
 
         {% endblock %}
 
-        </div>
+    </div>
 
-        <script type="text/template" id="template-table">
+    <script type="text/template" id="template-table">
 
-            <% if (_.isEmpty(rows)){ %>
-                <p><%- emptyMessage %></p>
-            <% } else { %>
-                <table class="table table-bordered table-hover">
-                    <% _.each(rows, function(row){ %>
-                        <tr>
-                            <th><%- row[1] %></th>
-                            <td><%- row[0] %></td>
-                        </tr>
-                    <% }); %>
-                </table>
-            <% } %>
-        </script>
+        <% if (_.isEmpty(rows)){ %>
+        <p><%- emptyMessage %></p>
+        <% } else { %>
+        <table class="table table-bordered table-hover">
+            <% _.each(rows, function(row){ %>
+            <tr>
+                <th><%- row[1] %></th>
+                <td><%- row[0] %></td>
+            </tr>
+            <% }); %>
+        </table>
+        <% } %>
+    </script>
 
-        <script type="text/template" id="template-modal">
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-                 aria-labelledby="modalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"
-                                    aria-label="Aizvērt">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="modalLabel">
-                                <%- modalTitle %>
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <%= modalBody %>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    data-dismiss="modal">Aizvērt
-                            </button>
-                        </div>
+    <script type="text/template" id="template-modal">
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+             aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Aizvērt">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="modalLabel">
+                            <%- modalTitle %>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <%= modalBody %>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm"
+                                data-dismiss="modal">Aizvērt
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </script>
+    </script>
 
-        <div id="modal-wrapper"></div>
+    <div id="modal-wrapper"></div>
 
-
-    </body>
-
+</body>
 </html>

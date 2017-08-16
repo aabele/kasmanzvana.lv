@@ -9,64 +9,48 @@
     {% endif %}
 {% endblock %}
 
+{% block body-header %}
+    <div class="jumbotron text-center" id="front-jumbo">
+        <h1>
+            Telefonu grāmata
+        </h1>
+        <p>
+            {% if category %}
+                Numuri kas sākas ar {{ category }}...
+            {% else %}
+                Izvēlies numura sākuma ciparus
+            {% endif %}
+        </p>
+
+    </div>
+{% endblock %}
 {% block body %}
-<div class="panel" style="padding: 30pt">
-
-    <h1>
-        Telefonu grāmata<br>
-        {% if category %}
-            <small>Numuri kas sākas ar {{ category }}...</small>
-        {% else %}
-            <small>Izvēlies numura sākuma ciparus</small>
-        {% endif %}
-    </h1>
-
-    <br>
-
-    <div class="">
         {% if namespace %}
-            <div class="row">
-                <form class="form-inline text-center">
-                    <div class="form-group">
-                        <label for="form-selector">
-                            <h4>Izvēlies telefona numura sākuma ciparus</h4>
-                        </label>
-                        <select class="form-control" name="form_selector" id="id_form_selector">
-                            {% for item in namespace %}
-                                <option value="{% if item|length_is:8 %}
-                                    {% url "phones:details" number=item %}
-                                {% else %}
-                                    {% url "phones:category" category=item %}
-                                {% endif %}">
-                                    {% if item|length_is:8 %}
-                                        {{ item }}
-                                    {% else %}
-                                        {{ item }}...
-                                    {% endif %}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </form>
-                {% for item in namespace %}
-                    <div class="col-md-4 padding0-1 text-center">
-                        {% if item|length_is:8 %}
-                            <a href="{% url "phones:details" number=item %}" class="btn btn-lg btn-secondary">
-                                <h4 style="font-weight: normal">{{ item }}</h4>
-                            </a>
-                        {% else %}
-                            <a href="{% url "phones:category" category=item %}" class="btn btn-lg btn-secondary">
-                                <h4 style="font-weight: normal">{{ item }}...</h4>
-                            </a>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+            <div class="row padding4">
+                <div class="col-md-12">
+                    <h1>Numuru kategorijas</h1>
+                    <p>
+                        Izvēlieties interesējošo kategoriju pēc meklētā numura pirmajiem cipariem.
+                    </p>
+                    <hr>
+                    {% for item in namespace %}
+                        <div class="col-md-4 padding0-1 text-center">
+                            {% if item|length_is:8 %}
+                                <a href="{% url "phones:details" number=item %}" class="btn btn-lg btn-secondary">
+                                    <h2>{{ item }}</h2>
+                                </a>
+                            {% else %}
+                                <a href="{% url "phones:category" category=item %}" class="btn btn-lg btn-secondary">
+                                    <h2>{{ item }}...</h2>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         {% else %}
             Šajā kategorijā diemžēl nav neviena reģistrēta tālruņa.
         {% endif %}
-
-    </div>
 
 {% endblock %}
 {% block extra_head %}

@@ -30,7 +30,7 @@ class Command(BaseCommand):
                     author, _ = models.user_model.objects.get_or_create(
                         username=comment.get('name'))
 
-                author.first_name = comment.get('name') or ''
+                author.first_name = comment.get('name')[:30] or ''
                 author.save()
 
                 c = models.Comment(

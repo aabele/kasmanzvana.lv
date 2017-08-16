@@ -4,5 +4,11 @@ from phone import models
 
 admin.site.register([
     models.Phone,
-    models.Comment
 ])
+
+
+class CommentAdmin(admin.ModelAdmin):
+    exclude = ('author', 'phone')
+
+
+admin.site.register(models.Comment, CommentAdmin)

@@ -4,8 +4,9 @@ Application models
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
-from phone import mixins
+from django.utils.timezone import now
 
+from phone import mixins
 
 user_model = get_user_model()
 
@@ -90,7 +91,7 @@ class Comment(mixins.HashidMixin, models.Model):
 
     anonymous_session = models.CharField(max_length=200, blank=True, null=True)
     author = models.ForeignKey(user_model, blank=True, null=True)
-    insert_date = models.DateTimeField(auto_now_add=True)
+    insert_date = models.DateTimeField(blank=True, null=True, editable=False)
 
     def __str__(self):
         """
@@ -115,3 +116,8 @@ class Comment(mixins.HashidMixin, models.Model):
             return False
 
         return self.author.is_staff is True
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.insert_date = now()
+        super().save(*args, **kwargs)

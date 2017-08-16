@@ -3,7 +3,7 @@
 
 {% block page_title %}{{ COUNTRY_PREFIX }} {{ number }}{% endblock %}
 
-{% block page_description %}{{ comments.0.comment|striptags }}{% endblock %}
+{% block page_description %}{{ object.visible_comments.0.body|striptags }}{% endblock %}
 
 {% block extra_head %}
     <script>
@@ -32,7 +32,7 @@
     {% include "phone/_snippets/login-block.html" %}
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 {% if request.user.is_authenticated %}padding4{% endif %}">
 
             <div class="row">
                 <div class="col-md-12">

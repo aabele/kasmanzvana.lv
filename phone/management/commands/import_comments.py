@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.core.management.base import BaseCommand
 
@@ -20,14 +21,22 @@ class Command(BaseCommand):
             number, _ = models.Phone.objects.get_or_create(phone=key)
 
             for comment in value:
-                author = None
                 if comment.get('email'):
                     author, _ = models.user_model.objects.get_or_create(
-                        email=comment.get('email'), first_name=comment.get('name'))
+                        username=comment.get('email'))
+                    author.email = comment.get('email')
+
+                else:
+                    author, _ = models.user_model.objects.get_or_create(
+                        username=comment.get('name'))
+
+                author.first_name = comment.get('name') or ''
+                author.save()
 
                 c = models.Comment(
                     author=author,
                     legacy=False if author else True,
                     phone=number,
+                    insert_date=datetime.datetime.strptime(comment.get('insert_date'), "%Y-%m-%dT%H:%M:%S.%f"),
                     body=comment.get('comment'))
                 c.save()

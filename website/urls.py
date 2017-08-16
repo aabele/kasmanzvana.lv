@@ -15,5 +15,4 @@ urlpatterns = [
     url(r'^kontakti/$', views.ContactView.as_view(), name='contacts'),
     url(r'^$', views.FrontPageView.as_view(), name='front'),
 
-
 ]

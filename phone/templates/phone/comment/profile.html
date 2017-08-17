@@ -13,10 +13,27 @@
 
 {% block body %}
 
-    <div class="panel text-center padding3">
 
-        {% if request.user.is_authenticated %}
-        {% else %}
+
+    {% if request.user.is_authenticated %}
+        <div class="padding4">
+            <h1>
+                Komentārs tika publicēts
+            </h1>
+            <hr>
+            <p>
+                Tālrunis: <a href="{% url "phones:details" number=object.phone.phone %}">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    {{ object.phone.phone }}
+                </a>
+            </p>
+            <p>
+                {{ object }}
+            </p>
+        </div>
+
+    {% else %}
+        <div class="text-center padding3">
             {% include "phone/_snippets/login-block.html" %}
             <div class="lead">
                 <p>
@@ -35,7 +52,6 @@
                     * verificēt savu numuru un to pārvaldīt (drīzumā)
                 </p>
             </div>
-
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -72,7 +72,7 @@
             </div>
 
 
-            <form method="post" action="{% url "phones:add_comment" %}" id="comment-form" style="display: none">
+            <form method="post" action="{% url "phones:add_comment" %}" class="padding2" id="comment-form" style="display: none">
 
                 <div class="padding0-1">
                     <h1>
@@ -103,7 +103,16 @@
 
             </form>
         </div>
-    {% include "phone/breadcrumbs.html" %}
+
+        <div class="col-md-12">
+            <ol class="breadcrumb text-center" style="background: none">
+                <li>Tālruņa kategorijas</li>
+                <li><a href="{% url "phones:category" object.cat_1 %}">{{ object.cat_1|slice:"0:2" }}</a></li>
+                <li><a href="{% url "phones:category" object.cat_2 %}">{{ object.cat_2|slice:"2:4" }}</a></li>
+                <li><a href="{% url "phones:category" object.cat_3 %}">{{ object.cat_3|slice:"4:6" }}</a></li>
+            </ol>
+        </div>
+
     </div>
 
 

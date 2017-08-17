@@ -44,3 +44,5 @@ SERVER_EMAIL = 'rekins@skolutiesibas.lv'
 ADMINS = (
     ('Aivis Abele', 'aabele@gmail.com'),
 )
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'

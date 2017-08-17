@@ -1,10 +1,15 @@
 """
 Application signals
 """
-from django.contrib.auth.signals import user_logged_in as generic_user_logged_id
 from allauth.account.signals import user_logged_in
+from django.contrib.auth.signals import user_logged_in as generic_user_logged_id
+from django.core.mail import mail_admins
+from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
+from app.urls import ADMIN_URL
+
 from phone import models
+from user.models import User
 
 
 def _assign(session_id, user):
@@ -42,3 +47,15 @@ def assign_anonymous_comments_generic(sender, user, request, **kwargs):
     :return:
     """
     _assign(request.session.get('_ask'), user)
+
+
+@receiver(post_save, sender=User)
+def notify_admin_about_new_user(sender, instance, created, **kwargs):
+    """
+    Send email notification about new user
+    """
+    if created:
+        mail_admins(
+            'New user registered in kasmanzvana.lv',
+            'https://kasmanzvana.lv/{0}/auth/user/{1}/change/'.format(ADMIN_URL, instance.pk)
+        )

@@ -107,7 +107,7 @@ var space = {};
         new CommentForm();
 
         this._setupCSRF();
-        // this._setupGoogleAnalytics();
+        this._setupGoogleAnalytics();
         this._setUpNewWindowLinks();
 
         this.$form = $("#number-form");

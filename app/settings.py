@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'twitter_bootstrap',
     'bootstrapform',
     'compressor',
+    'rest_framework',
 
     'phone',
     'user',

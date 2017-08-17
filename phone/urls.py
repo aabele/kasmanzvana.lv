@@ -2,8 +2,13 @@
 Application url config
 """
 from django.conf.urls import url
+from rest_framework.routers import DefaultRouter
 
 from phone import views
+from phone import viewsets
+
+router_v1 = DefaultRouter()
+router_v1.register(r'phone', viewsets.PhoneViewSet, 'phone')
 
 urlpatterns = [
 

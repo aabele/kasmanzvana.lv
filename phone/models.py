@@ -11,6 +11,36 @@ from phone import mixins
 user_model = get_user_model()
 
 
+class PhoneRating(models.Model):
+    """
+    User voting for the number
+    """
+
+    PLUS = 1
+    MINUS = -1
+    CHOICES = (
+        (PLUS, 'Celt'),
+        (MINUS, 'Necelt'),
+    )
+    value = models.SmallIntegerField(choices=CHOICES, blank=True, null=True)
+    phone = models.ForeignKey('phone.Phone')
+    user = models.ForeignKey(user_model)
+
+    class Meta(object):
+        """
+        Model meta options
+        """
+        unique_together = ('phone', 'user')
+
+    def save(self, *args, **kwargs):
+        """
+        Regenerate related phone stats after each save
+        """
+        super().save(*args, **kwargs)
+        self.phone.generate_phone_rating()
+        self.phone.save()
+
+
 class Phone(mixins.HashidMixin, models.Model):
     """
     Phone model implementation
@@ -21,10 +51,43 @@ class Phone(mixins.HashidMixin, models.Model):
     cat_2 = models.CharField(max_length=4, blank=True, null=True, editable=False)
     cat_3 = models.CharField(max_length=6, blank=True, null=True, editable=False)
 
+    rating_value = models.IntegerField(default=0, editable=False)
+    positive_votes = models.IntegerField(default=0, editable=False)
+    negative_votes = models.IntegerField(default=0, editable=False)
+
+    def generate_phone_rating(self):
+        """
+        Calculate the phone rating values
+        """
+        positive_votes = self.phonerating_set.filter(value=PhoneRating.PLUS).count()
+        negative_votes = self.phonerating_set.filter(value=PhoneRating.MINUS).count()
+        self.rating_value = positive_votes - negative_votes
+        self.positive_votes = positive_votes
+        self.negative_votes = negative_votes
+
+    def vote_plus(self, user):
+        """
+        Vote plus or minus
+        :param user: user instance
+        """
+        obj, _ = PhoneRating.objects.get_or_create(phone=self, user=user)
+        obj.value = PhoneRating.PLUS
+        obj.save()
+
+    def vote_minus(self, user):
+        """
+        Vote plus or minus
+        :param user: user instance
+        """
+        obj, _ = PhoneRating.objects.get_or_create(phone=self, user=user)
+        obj.value = PhoneRating.MINUS
+        obj.save()
+
+
     def __str__(self):
         """
         Object representation as string
-        :return:
+        :return: string
         """
         return self.phone
 

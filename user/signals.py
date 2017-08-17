@@ -57,5 +57,10 @@ def notify_admin_about_new_user(sender, instance, created, **kwargs):
     if created:
         mail_admins(
             'New user registered in kasmanzvana.lv',
-            'https://kasmanzvana.lv/{0}/auth/user/{1}/change/'.format(ADMIN_URL, instance.pk)
+            ('https://kasmanzvana.lv/{0}/user/user/{1}/change/'
+             '\n\n'
+             'Vārds: {2}\n'
+             'Uzvārds: {3}\n'
+             'Epasts: {4}').format(ADMIN_URL, instance.pk, instance.first_name,
+                                   instance.last_name, instance.email)
         )

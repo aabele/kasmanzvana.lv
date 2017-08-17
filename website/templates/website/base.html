@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static "css/main.css" %}?ver=2">
+
+    {% static "css/main.css" as css %}
+    {% include "website/utils/compress_css.html" with path=css %}
     <link rel="icon" href="{% static "favicon.png" %}">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -19,7 +21,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{% static "js/common.js" %}?ver=3"></script>
+
+    {% static "js/common.js" as js %}
+    {% include "website/utils/compress_js.html" with path=js %}
 
     {% block extra_head %}{% endblock %}
 

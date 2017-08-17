@@ -1,0 +1,9 @@
+{% load compress %}
+
+{% if debug %}
+    <link href="{{ path }}" rel="stylesheet">
+{% else %}
+    {% compress css %}
+        <link href="{{ path }}" rel="stylesheet">
+    {% endcompress %}
+{% endif %}

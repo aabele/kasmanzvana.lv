@@ -1,0 +1,9 @@
+{% load compress %}
+
+{% if debug %}
+    <script src="{{ path }}"></script>
+{% else %}
+    {% compress js %}
+        <script src="{{ path }}"></script>
+    {% endcompress %}
+{% endif %}

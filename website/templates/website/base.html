@@ -31,7 +31,8 @@
 
     <div class="global-wrapper">
 
-        <div class="container">
+        <div class="picture-background">
+            <div class="container">
             <div class="row padding1">
                 <div class="col-md-4">
                     {% include "phone/_snippets/footer-menu.html" %}
@@ -60,8 +61,7 @@
                 {% endif %}
             </div>
         </div>
-
-        <div class="container">
+            <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     {% block body-header %}
@@ -93,6 +93,7 @@
                     {% endblock %}
                 </div>
             </div>
+        </div>
         </div>
 
         {% block page-body %}

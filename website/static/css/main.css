@@ -9,11 +9,15 @@
 }
 
 body {
+    position: relative;
+    background-color: #f4f4f4;
+}
+
+.picture-background {
     background-image: url(/static/background1.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    position: relative;
 }
 
 #wrapper {

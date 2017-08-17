@@ -104,14 +104,16 @@
             </form>
         </div>
 
-        <div class="col-md-12">
-            <ol class="breadcrumb text-center" style="background: none">
-                <li>Tālruņa kategorijas</li>
-                <li><a href="{% url "phones:category" object.cat_1 %}">{{ object.cat_1|slice:"0:2" }}</a></li>
-                <li><a href="{% url "phones:category" object.cat_2 %}">{{ object.cat_2|slice:"2:4" }}</a></li>
-                <li><a href="{% url "phones:category" object.cat_3 %}">{{ object.cat_3|slice:"4:6" }}</a></li>
-            </ol>
-        </div>
+        {% if object %}
+            <div class="col-md-12">
+                <ol class="breadcrumb text-center" style="background: none">
+                    <li>Tālruņa kategorijas</li>
+                    <li><a href="{% url "phones:category" object.cat_1 %}">{{ object.cat_1|slice:"0:2" }}</a></li>
+                    <li><a href="{% url "phones:category" object.cat_2 %}">{{ object.cat_2|slice:"2:4" }}</a></li>
+                    <li><a href="{% url "phones:category" object.cat_3 %}">{{ object.cat_3|slice:"4:6" }}</a></li>
+                </ol>
+            </div>
+        {% endif %}
 
     </div>
 

@@ -12,4 +12,6 @@
         <p>Reģistrējies {{ object.date_joined|date }}</p>
     </div>
 {% endblock %}
-{% block page-body %}{% endblock %}
+{% block page-body %}
+    {% include "phone/_snippets/login-block.html" %}
+{% endblock %}

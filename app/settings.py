@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'compressor',
     'rest_framework',
+    'sorl.thumbnail',
 
     'phone',
     'user',
@@ -92,6 +93,11 @@ TEMPLATES = [
         },
     },
 ]
+
+# Especially for sorl thumbnail app
+TEMPLATE_DEBUG = True
+THUMBNAIL_DEBUG = True
+
 
 WSGI_APPLICATION = 'app.wsgi.application'
 

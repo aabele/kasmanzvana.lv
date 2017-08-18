@@ -37,14 +37,14 @@
     </div>
 
     <div class="row padding4">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h1>
                 Jaunākais Portālā
             </h1>
             <hr>
             <div class="row">
                 {% for item in latest_comments %}
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         {% if forloop.counter < 4 %}
                             <div class="padding0-1">
                                 <a href="{{ item.author.get_absolute_url }}">
@@ -71,7 +71,37 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="col-md-4">
+            <h1>
+                Lietotāji
+            </h1>
+            <hr>
+            {% for user in latest_users %}
+                <div class="padding0-1">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="{{ user.get_absolute_url }}">
+                                {% include "website/utils/avatar.html" with size="40" avatar=user.socialaccount_set.all.0.get_avatar_url %}
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">
+                                <a href="{{ user.get_absolute_url }}">
+                                    {% include "phone/_snippets/user.html" %}
+                                </a>
+                            </h5>
+                            <p class="small">
+                                Pievienojās {{ user.date_joined }}
+                            </p>
 
+                        </div>
+                    </div>
+
+
+
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% if not request.user.is_authenticated %}

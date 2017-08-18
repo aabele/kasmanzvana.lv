@@ -1,0 +1,10 @@
+{% load static %}
+{% load thumbnail %}
+
+{% if avatar %}
+    {% thumbnail avatar size crop="center" as img %}
+       <img class="img-responsive rounded-circle {{ extra_class }}" src="{{ img.url }}">
+    {% endthumbnail %}
+{% else %}
+    <img class="img-responsive rounded-circle {{ extra_class }}" src="{% static "img/anonymous.png" %}" style="width: {{ size }}px; height: {{ size }}px">
+{% endif %}

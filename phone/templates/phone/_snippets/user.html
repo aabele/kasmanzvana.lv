@@ -1,9 +1,5 @@
 {% if user.get_full_name %}
-    {% if request.user.is_authenticated %}
-        {{ user.get_full_name }} ({{ user.get_hashid_pk }})
-    {% else %}
-        {{ user.get_full_name }}
-    {% endif %}
+    {{ user.get_full_name }}
 {% else %}
     Telefona Lietotājs ({{ user.get_hashid_pk }})
 {% endif %}

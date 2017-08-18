@@ -9,9 +9,9 @@
                 {% include "phone/_snippets/user.html" with user=object %}
             </a>
         </h1>
-        <p>Reģistrējies {{ object.date_joined|date }}</p>
+        <p>Piereģistrējās {{ object.date_joined|date }}</p>
     </div>
 {% endblock %}
-{% block page-body %}
+{% block body %}
     {% include "phone/_snippets/login-block.html" %}
 {% endblock %}

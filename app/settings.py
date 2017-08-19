@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'phone.middlewares.AnonymousIDMiddleware',
+    'user.middlewares.EmailMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'

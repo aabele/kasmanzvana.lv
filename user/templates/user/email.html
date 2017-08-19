@@ -1,0 +1,36 @@
+{% extends "website/base.html" %}
+{% load i18n %}
+
+{% block page_title %}Kontakti{% endblock %}
+
+{% block body-header %}
+    <div class="jumbotron text-center" id="front-jumbo">
+        <h1>
+            <a href="{{ request.path }}">
+                Jūsu epasts
+            </a>
+        </h1>
+        <p>
+            Lai pilnvērtīgi varētu lietot mūsu pakalpojumus, lūdzu ievadiet savu epasta adresi.
+        </p>
+    </div>
+{% endblock %}
+
+{% block body %}
+        <div class="row padding4">
+            <div class="col-md-6 col-md-offset-3">
+                {% include "website/includes/form.html" with submit_text="Saglabāt" %}
+            </div>
+        </div>
+{% endblock %}
+
+{% block extra_head %}
+
+    <script>
+        $(function(){
+            $("input, textarea").addClass("input-lg");
+            $(".btn").addClass("btn-lg");
+        });
+    </script>
+
+{% endblock %}

@@ -81,7 +81,7 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="{{ user.get_absolute_url }}">
-                                {% include "website/utils/avatar.html" with size="40" avatar=user.socialaccount_set.first.get_avatar_url extra_class="media-object" %}
+                                {% include "website/utils/avatar.html" with size="40" avatar=user.socialaccount_set.first.get_avatar_url extra_class="media-object img-circle" %}
                             </a>
                         </div>
                         <div class="media-body">

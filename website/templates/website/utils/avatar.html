@@ -2,9 +2,11 @@
 {% load thumbnail %}
 
 {% if avatar %}
-    {% thumbnail avatar size crop="center" as img %}
-       <img class="{{ extra_class }}" src="{{ img.url }}">
-    {% endthumbnail %}
+    {% with size|add:"x"|add:size as img_size %}
+        {% thumbnail avatar img_size crop="center" upscale=True as img %}
+           <img class="{{ extra_class }}" src="{{ img.url }}">
+        {% endthumbnail %}
+    {% endwith %}
 {% else %}
     <img class="{{ extra_class }}" src="{% static "img/anonymous.png" %}" style="width: {{ size }}px; height: {{ size }}px">
 {% endif %}

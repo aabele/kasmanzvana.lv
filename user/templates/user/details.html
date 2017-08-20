@@ -4,6 +4,11 @@
 
 {% block body-header %}
     <div class="jumbotron text-center" id="front-jumbo">
+
+        <div>
+            {% include "website/utils/avatar.html" with size="100" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+        </div>
+
         <h1>
             <a href="{{ object.get_absolute_url }}">
                 {% include "phone/_snippets/user.html" with user=object %}

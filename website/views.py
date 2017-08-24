@@ -1,6 +1,7 @@
 """
 Application views
 """
+from django.utils import timezone
 from django.views.generic import TemplateView
 from phone import models
 
@@ -22,9 +23,18 @@ class FrontPageView(TemplateView):
     template_name = 'website/front.html'
 
     def get_context_data(self, **kwargs):
+
+        today = timezone.now().date()
+        this_month_comments = (models.Comment.objects
+                               .filter(insert_date__date=today)
+                               .exclude(author__isnull=True, legacy=True))
+
         data = super().get_context_data(**kwargs)
-        data['latest_comments'] = models.Comment.objects.filter(author__isnull=False).order_by('-id')[:2]
-        data['latest_users'] = user_model.objects.all().order_by('-id')[:5]
+        data['this_month_registered'] = (user_model.objects
+                                         .filter(date_joined__year=today.year, date_joined__month=today.month)
+                                         .order_by('-id'))
+        data['this_month_comments'] = this_month_comments.count()
+        data['this_month_numbers'] = models.Phone.objects.filter(pk__in=this_month_comments.values_list('phone_id', flat=True)).count()
         return data
 
 

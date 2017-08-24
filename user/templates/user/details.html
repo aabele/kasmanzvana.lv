@@ -19,4 +19,15 @@
 {% endblock %}
 {% block body %}
     {% include "phone/_snippets/login-block.html" %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Komentāri</h1>
+            {% if obj.comment_set.all %}
+            {% else %}
+                <p>Vēl nav neviena komentāra</p>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}

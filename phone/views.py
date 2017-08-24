@@ -24,7 +24,11 @@ class PhoneDetailView(DetailView):
             obj = self.model.objects.get(phone=self.kwargs.get('number'))
         except self.model.DoesNotExist:
             obj = {}
-        self.object = obj
+
+        if models.RemovedPhone.objects.filter(phone=self.kwargs.get('number')).exists():
+            raise self.model.DoesNotExist
+        else:
+            self.object = obj
         return obj
 
     def get_number(self):

@@ -11,6 +11,20 @@ from phone import mixins
 user_model = get_user_model()
 
 
+class RemovedPhone(models.Model):
+    """
+    Phones with owners that do not want their numbers to be published.
+    """
+    phone = models.CharField(max_length=8, unique=True)
+
+    def __str__(self):
+        """
+        Object representation as string
+        :return: string
+        """
+        return self.phone
+
+
 class PhoneRating(models.Model):
     """
     User voting for the number
@@ -82,7 +96,6 @@ class Phone(mixins.HashidMixin, models.Model):
         obj, _ = PhoneRating.objects.get_or_create(phone=self, user=user)
         obj.value = PhoneRating.MINUS
         obj.save()
-
 
     def __str__(self):
         """

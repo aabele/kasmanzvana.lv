@@ -8,7 +8,7 @@
     <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
         <div class="col-md-8 col-md-offset-2 text-center">
             {% spaceless %}
-                {% for user in this_month_registered|slice:"0:20" %}
+                {% for user in this_month_registered|slice:"0:15" %}
                     <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
                         {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
                     </a>

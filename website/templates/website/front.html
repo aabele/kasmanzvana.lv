@@ -5,7 +5,7 @@
 
     {% include "phone/_snippets/login-block.html" %}
 
-    <div class="row">
+    <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
         <div class="col-md-8 col-md-offset-2 text-center">
             {% spaceless %}
                 {% for user in this_month_registered|slice:"0:10" %}

@@ -7,17 +7,18 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center">
-            {% for user in this_month_registered|slice:"0:10" %}
-                <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
-                    {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
-                </a>
-            {% endfor %}
+            {% spaceless %}
+                {% for user in this_month_registered|slice:"0:10" %}
+                    <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
+                        {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+                    </a>
+                {% endfor %}
 
-            <p class="padding1">
-                Šomēnes {{ this_month_registered.count }} apmeklētāji kļuva par mūsu lietotājiem un
-                publicēja {{ this_month_comments }} komentārus par {{ this_month_numbers }} numuriem.
-            </p>
-
+                <p class="padding1">
+                    Šomēnes {{ this_month_registered.count }} apmeklētāji kļuva par mūsu lietotājiem un
+                    publicēja {{ this_month_comments }} komentārus par {{ this_month_numbers }} numuriem.
+                </p>
+            {% endspaceless %}
         </div>
     </div>
 

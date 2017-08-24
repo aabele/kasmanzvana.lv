@@ -12,6 +12,7 @@ class User(mixins.HashidMixin, AbstractUser):
     Application user implementation
     """
     is_banned = models.BooleanField(default=False)
+    legacy = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('users:details', kwargs={'pk': self.get_hashid_pk()})

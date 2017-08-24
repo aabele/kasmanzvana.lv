@@ -32,6 +32,7 @@ class FrontPageView(TemplateView):
         data = super().get_context_data(**kwargs)
         data['this_month_registered'] = (user_model.objects
                                          .filter(date_joined__year=today.year, date_joined__month=today.month)
+                                         .exclude(legacy=True)
                                          .order_by('-id'))
         data['this_month_comments'] = this_month_comments.count()
         data['this_month_numbers'] = models.Phone.objects.filter(pk__in=this_month_comments.values_list('phone_id', flat=True)).count()

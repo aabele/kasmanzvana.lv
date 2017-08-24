@@ -1,16 +1,19 @@
 """
 Application URL Configuration
 """
+from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf import settings
-from user.views import LoginView
-from phone.urls import router_v1 as phone_router_v1
+from django.contrib.sitemaps.views import sitemap
 
+from app.sitemaps import sitemap_config
+from phone.urls import router_v1 as phone_router_v1
+from user.views import LoginView
 
 ADMIN_URL = 'admin' if settings.DEBUG else 'admin-26414607'
 
 urlpatterns = [
+    url(r'^sitemap\.xml$', sitemap, sitemap_config),
     url(r'^{0}/'.format(ADMIN_URL), admin.site.urls),
 
     url(r'^api/v1/', include([

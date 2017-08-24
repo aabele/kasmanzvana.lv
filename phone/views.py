@@ -1,8 +1,9 @@
 """
 Application views
 """
-from django.views.generic import DetailView, CreateView, TemplateView
 from django.contrib import messages
+from django.http import Http404
+from django.views.generic import DetailView, CreateView, TemplateView
 
 from phone import forms
 from phone import models
@@ -26,7 +27,7 @@ class PhoneDetailView(DetailView):
             obj = {}
 
         if models.RemovedPhone.objects.filter(phone=self.kwargs.get('number')).exists():
-            raise self.model.DoesNotExist
+            raise Http404
         else:
             self.object = obj
         return obj

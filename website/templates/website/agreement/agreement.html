@@ -1,29 +1,40 @@
 {% extends "website/base.html" %}
 
-{% block page_title %}Saistību atruna{% endblock %}
+{% block page_title %}
+    Lietošanas noteikumi un saistību atruna
+{% endblock %}
 
 {% block body %}
     <div class="padding3">
-        <h1>Saistību atruna</h1>
+        <h1>Lietošanas noteikumi un saistību atruna</h1>
         <hr>
         <p class="padding0-1">
-            Informācijas ievietotājs ir atbildīgs par ievietotās informācijas saturu.
+            Reģistrējoties šajā vietnē, Jūs piekrītat savu sniegto datu apstrādei Fizisko personu datu
+            aizsardzības likuma izpratnē. Reģistrējoties sniegtie dati netiek nodoti trešajām personām,
+            izņemot pēc kompetento valsts pārvaldes institūciju pieprasījuma normatīvajos aktos noteiktajos
+            gadījumos un kārtībā.
         </p>
         <p class="padding0-1">
-            Komentāri ar nepieņemamu saturu tiks dzēsti, autoram tiks bloķēta pieeja lapai, dati problēmu
-            gadījumā nodoti policijai.
+            Informācijas ievietotājs atbild par ievietotās informācijas saturu, kā arī par to, ka
+            informāciju neievieto citas personas vārdā.
+        </p>
+        <p class="padding0-1">
+            Informācija (t.sk. komentāri) ar nepieņemamu saturu tiks dzēsti, autoram tiks bloķēta pieeja lapai,
+            normatīvajos aktos noteiktajos gadījumos informācija tiks nodoti kompetentajām valsts pārvaldes
+            institūcijām (t.sk. tiesībsargājošām iestādēm).
         </p>
         <p class="padding0-1">
             Jebkāda veida nesaskaņota reklāma tiks dzēsta. Izņēmums - saite, kas papildina informāciju vai diskusiju.
         </p>
         <p class="padding0-1">
-            Neievietojiet informāciju citas personas vārdā.
-        </p>
-        <p class="padding0-1">
             Jebkura informācija var tikt dzēsta, nesniedzot nekādus paskaidrojumus.
         </p>
         <p class="padding0-1">
-            Šie noteikumi var tikt mainīti bez brīdinājuma.
+            Jebkāda veida nesaskaņota reklāma (vai līdzīga rakstura informācija) tiks dzēsta, izņemot saites,
+            kas papildina informāciju vai sniedz pienesumu diskusijai.
+        </p>
+        <p class="padding0-1">
+            Administrators šos noteikumus var mainīt bez brīdinājuma.
         </p>
         <p class="padding0-1">
             <a href="{% url "website:takedown" %}">

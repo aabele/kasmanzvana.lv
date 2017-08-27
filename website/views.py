@@ -27,6 +27,7 @@ class FrontPageView(TemplateView):
         today = timezone.now().date()
         this_month_comments = (models.Comment.objects
                                .filter(insert_date__year=today.year, insert_date__month=today.month)
+                               .filter(pk__gte=1219642)  # safe to remove after 2017.09.01
                                .exclude(author__isnull=True, legacy=True))
 
         data = super().get_context_data(**kwargs)

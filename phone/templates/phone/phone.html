@@ -24,7 +24,9 @@
                 {{ COUNTRY_PREFIX }} {{ number }}
             </a>
         </h1>
-        <p>Zvana no šī nepazīstamā numura?</p>
+        <p>
+            Šis numurs un nekādi ar to saistīti dati mūsu datu bāzē nav.
+        </p>
         <div class="row">
                 <a href="" class="btn btn-link btn-vote">
                     Celt 0
@@ -39,6 +41,17 @@
     </div>
 {% endblock %}
 {% block body %}
+    {% if not number_in_db %}
+        <div class="row text-center">
+            <div class="col-md-12">
+                <p class="padding1">
+                    Mums nav nekādas informācijas par šo numuru, bet labprāt pievienosim
+                    to mūsu datubāzei tiklīdz apmeklētāji komentēs.
+                </p>
+            </div>
+
+        </div>
+    {% endif %}
 
     {% include "phone/_snippets/login-block.html" %}
 

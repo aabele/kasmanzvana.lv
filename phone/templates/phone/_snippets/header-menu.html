@@ -1,0 +1,15 @@
+
+<ol class="breadcrumb global-menu">
+
+    {% url "website:front" %}
+    {% url "website:front" as link_url %}
+    {% if link_url == request.path %}
+        <li>Sākums</li>
+    {% else %}
+        <li><a href="{{ link_url }}" title="Sākums">Sākums</a></li>
+    {% endif %}
+
+    {% url "phones:category_index" as link_url %}
+    <li><a href="{{ link_url }}" title="Numuri">Numuri</a></li>
+
+</ol>

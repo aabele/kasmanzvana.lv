@@ -50,6 +50,7 @@ class PhoneDetailView(DetailView):
         """
         data = super().get_context_data()
         data['number'] = self.get_number()
+        data['number_in_db'] = self.get_number() == {}
         data['form'] = self.comment_form()
         return data
 

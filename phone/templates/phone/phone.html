@@ -24,9 +24,6 @@
                 {{ COUNTRY_PREFIX }} {{ number }}
             </a>
         </h1>
-        <p>
-            Šis numurs un nekādi ar to saistīti dati mūsu datu bāzē nav.
-        </p>
         <div class="row">
                 <a href="" class="btn btn-link btn-vote">
                     Celt 0
@@ -41,17 +38,6 @@
     </div>
 {% endblock %}
 {% block body %}
-    {% if not number_in_db %}
-        <div class="row text-center">
-            <div class="col-md-12">
-                <p class="padding1">
-                    Mums nav nekādas informācijas par šo numuru, bet labprāt pievienosim
-                    to mūsu datubāzei tiklīdz apmeklētāji komentēs.
-                </p>
-            </div>
-
-        </div>
-    {% endif %}
 
     {% include "phone/_snippets/login-block.html" %}
 
@@ -59,7 +45,7 @@
         <div class="col-md-12 {% if request.user.is_authenticated %}padding4{% endif %}">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <h1>
                         <i class="fa fa-comments" aria-hidden="true"></i>
                         Apmeklētāju komentāri
@@ -92,6 +78,22 @@
                     {% else %}
                         <p>Pagaidām vēl nav informācijas.</p>
                     {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h1>
+                        <i class="fa fa-database" aria-hidden="true"></i>
+                        Statuss
+                    </h1>
+                    <hr>
+                    <p class="padding1">
+                        {% if number_in_db %}
+                            Dati ir iekļauti mūsu datu bāzē.
+                        {% else %}
+                            Mums diemžēl joprojām nav nekādas informācijas par šo numuru, bet labprāt
+                            pievienosim to mūsu datubāzei tiklīdz iegūsim jebkādu informāciju no mūsu
+                            apmeklētājiem.
+                        {% endif %}
+                    </p>
                 </div>
             </div>
 

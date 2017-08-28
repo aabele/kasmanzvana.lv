@@ -30,6 +30,7 @@ class PhoneDetailView(DetailView):
             raise Http404
         else:
             self.object = obj
+
         return obj
 
     def get_number(self):
@@ -50,7 +51,7 @@ class PhoneDetailView(DetailView):
         """
         data = super().get_context_data()
         data['number'] = self.get_number()
-        data['number_in_db'] = self.get_number() == {}
+        data['number_in_db'] = self.get_object() != {}
         data['form'] = self.comment_form()
         return data
 

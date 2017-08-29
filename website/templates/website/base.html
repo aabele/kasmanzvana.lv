@@ -1,13 +1,22 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" class="full">
-<head itemscope itemtype="http://schema.org/WebSite">
+<head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="eIlNBHJx1UN-EqXAPcUXn8WwEoBjMAKiHzhuSsBbpW8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title itemprop="name">{% block page_title %}Kas man zvana{% endblock %} - Latvijas telefonu grāmata</title>
-    <link rel="canonical" href="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.META.HTTP_HOST }}" itemprop="url">
+    <title>{% block page_title %}Kas man zvana{% endblock %} - Latvijas telefonu grāmata</title>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "Kas man zvana?",
+            "alternateName": "Latvijas telefonu grāmata",
+            "url": "{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.META.HTTP_HOST }}"
+        }
+    </script>
 
     <meta name="description" content="{% block page_description %}{% endblock %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">

@@ -15,6 +15,41 @@
         };
 
     </script>
+
+    <script type="application/ld+json">
+        {
+            "context": "http://schema.org",
+            "type": "Organization",
+            "name": "{{ COUNTRY_PREFIX }} {{ number }}",
+            "telephone": "[{{ COUNTRY_PREFIX }} {{ number }}]",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "{{ object.vote_rating }}",
+                "ratingCount": "{{ object.total_votes }}"
+            }
+        }
+    </script>
+
+    {% with object.authenticated_comments.first as review %}
+        <script type="application/ld+json">
+            {
+                "context": "http://schema.org",
+                "type": "Review",
+                "reviewBody": "{{ review.body }}",
+                "itemReviewed": {
+                    "type": "Organization",
+                    "name": "{{ COUNTRY_PREFIX }}{{ review.phone }}",
+                    "sameAs": "{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.META.HTTP_HOST }}{{ review.phone.get_absolute_url }}"
+                },
+                "author": {
+                    "type": "Person",
+                    "name": "{% if review.author.get_full_name %}{{ review.author.get_full_name }}{% else %}{{ review.author }}{% endif %}",
+                    "sameAs": "{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.META.HTTP_HOST }}{{ review.author.get_absolute_url }}"
+                }
+            }
+        </script>
+    {% endwith %}
+
 {% endblock %}
 
 {% block body-header %}
@@ -186,7 +221,6 @@
 
     </div>
 
-
-
 {% endblock %}
+
 {% block sidebar %}{% include "phone/_snippets/phone-sidebar.html" %}{% endblock %}

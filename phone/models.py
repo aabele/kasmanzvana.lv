@@ -97,6 +97,12 @@ class Phone(mixins.HashidMixin, models.Model):
         obj.value = PhoneRating.MINUS
         obj.save()
 
+    def total_votes(self):
+        return PhoneRating.objects.filter(phone=self).count()
+
+    def vote_rating(self):
+        return sum(list(PhoneRating.objects.filter(phone=self).values_list('value', flat=True)))
+
     def __str__(self):
         """
         Object representation as string
@@ -119,6 +125,9 @@ class Phone(mixins.HashidMixin, models.Model):
 
     def visible_comments(self):
         return self.comment_set.order_by('-id')
+
+    def authenticated_comments(self):
+        return self.comment_set.filter(author__isnull=False, legacy=False).order_by('-id')
 
     @classmethod
     def get_namespace(cls, prefix=None):

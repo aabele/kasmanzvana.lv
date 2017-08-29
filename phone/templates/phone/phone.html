@@ -19,7 +19,7 @@
     <script type="application/ld+json">
         {
             "context": "http://schema.org",
-            "type": "Organization",
+            "@type": "Organization",
             "name": "{{ COUNTRY_PREFIX }} {{ number }}",
             "telephone": "[{{ COUNTRY_PREFIX }} {{ number }}]",
             "aggregateRating": {
@@ -34,7 +34,7 @@
         <script type="application/ld+json">
             {
                 "context": "http://schema.org",
-                "type": "Review",
+                "@type": "Review",
                 "reviewBody": "{{ review.body }}",
                 "itemReviewed": {
                     "type": "Organization",

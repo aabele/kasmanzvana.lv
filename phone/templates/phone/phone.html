@@ -175,43 +175,79 @@
         </div>
 
         {% if object %}
+
+            <script type="application/ld+json">
+                {
+                    "@context": "http://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "item": {
+                                "@id": "{% url "website:front" %}",
+                                "name": "Tālruņa kategorijas",
+                            }
+                        }
+                        {% if object.cat_1 %},
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "item": {
+                                    "@id": "{% url "phones:category" object.cat_1 %}",
+                                    "name": "{{ object.cat_1 }}",
+                                }
+                            }
+                        {% endif %}
+                        {% if object.cat_2 %},
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "item": {
+                                    "@id": "{% url "phones:category" object.cat_2 %}",
+                                    "name": "{{ object.cat_2|slice:"2:4" }}",
+                                }
+                            }
+                        {% endif %}
+                        {% if object.cat_3 %},
+                            {
+                                "@type": "ListItem",
+                                "position": 4,
+                                "item": {
+                                    "@id": "{% url "phones:category" object.cat_3 %}",
+                                    "name": "{{ object.cat_3|slice:"4:6" }}",
+                                }
+                            }
+                        {% endif %}
+                    ]
+                }
+            </script>
+
             <div class="col-md-12">
-                <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb text-center" style="background: none">
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a href="{% url "website:front" %}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
-                            <span itemprop="name">
-                                Tālruņa kategorijas
-                            </span>
-                            <meta itemprop="position" content="1" />
+                <ol class="breadcrumb text-center" style="background: none">
+                    <li>
+                        <a href="{% url "website:front" %}">
+                            Tālruņa kategorijas
                         </a>
                     </li>
-                    {% if object.cat_2 %}
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="{% url "phones:category" object.cat_1 %}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
-                                <span itemprop="name">
-                                    {{ object.cat_1 }}
-                                </span>
-                                <meta itemprop="position" content="2">
+                    {% if object.cat_1 %}
+                        <li>
+                            <a href="{% url "phones:category" object.cat_1 %}">
+                                {{ object.cat_1 }}
                             </a>
                         </li>
                     {% endif %}
                     {% if object.cat_2 %}
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="{% url "phones:category" object.cat_2 %}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
-                                <span itemprop="name">
-                                    {{ object.cat_2|slice:"2:4" }}
-                                </span>
-                                <meta itemprop="position" content="3">
+                        <li>
+                            <a href="{% url "phones:category" object.cat_2 %}">
+                                {{ object.cat_2|slice:"2:4" }}
                             </a>
                         </li>
                     {% endif %}
                     {% if object.cat_3 %}
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a href="{% url "phones:category" object.cat_3 %}" itemscope itemtype="http://schema.org/Thing" itemprop="item">
-                                <span itemprop="name">
-                                    {{ object.cat_3|slice:"4:6" }}
-                                </span>
-                                <meta itemprop="position" content="4">
+                        <li>
+                            <a href="{% url "phones:category" object.cat_3 %}">
+                                {{ object.cat_3|slice:"4:6" }}
                             </a>
                         </li>
                     {% endif %}

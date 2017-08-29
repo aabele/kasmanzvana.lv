@@ -186,7 +186,7 @@
                             "position": 1,
                             "item": {
                                 "@id": "{% url "website:front" %}",
-                                "name": "Tālruņa kategorijas",
+                                "name": "Tālruņa kategorijas"
                             }
                         }
                         {% if object.cat_1 %},
@@ -195,7 +195,7 @@
                                 "position": 2,
                                 "item": {
                                     "@id": "{% url "phones:category" object.cat_1 %}",
-                                    "name": "{{ object.cat_1 }}",
+                                    "name": "{{ object.cat_1 }}"
                                 }
                             }
                         {% endif %}
@@ -205,7 +205,7 @@
                                 "position": 3,
                                 "item": {
                                     "@id": "{% url "phones:category" object.cat_2 %}",
-                                    "name": "{{ object.cat_2|slice:"2:4" }}",
+                                    "name": "{{ object.cat_2|slice:"2:4" }}"
                                 }
                             }
                         {% endif %}
@@ -215,7 +215,7 @@
                                 "position": 4,
                                 "item": {
                                     "@id": "{% url "phones:category" object.cat_3 %}",
-                                    "name": "{{ object.cat_3|slice:"4:6" }}",
+                                    "name": "{{ object.cat_3|slice:"4:6" }}"
                                 }
                             }
                         {% endif %}

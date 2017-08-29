@@ -13,8 +13,6 @@
 
 {% block body %}
 
-
-
     {% if request.user.is_authenticated %}
         <div class="padding4">
             <h1>
@@ -34,7 +32,7 @@
 
     {% else %}
         <div class="text-center padding3">
-            {% include "phone/_snippets/login-block.html" %}
+
             <div class="lead">
                 <p>
                     Komentāru mēs saglabājām, bet lai to publicētu pieslēdzies ar sociālo tīklu kontu.
@@ -42,7 +40,7 @@
                 </p>
             </div>
 
-
+            {% include "phone/_snippets/login-block.html" %}
 
             <div class="lead padding1">
                 <p>

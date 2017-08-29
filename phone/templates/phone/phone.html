@@ -55,7 +55,7 @@
                          <div class="padding1">
                             {% for comment in object.visible_comments %}
                                 {% if not forloop.first %}<hr>{% endif %}
-                                <div>
+                                <div class="{% if not comment.author %} anonymous-comment{% endif %}">
                                     <div class="lead">
                                         {% if comment.is_admin %}
                                             {{ comment.body|safe|linebreaks }}
@@ -67,9 +67,13 @@
                                     {% spaceless %}
                                         <div class="meta">
                                             <i class="fa fa-user" aria-hidden="true"></i>
-                                            <a href="{{ comment.author.get_absolute_url }}">
-                                                {% include "phone/_snippets/user.html" with user=comment.author %}
-                                            </a> @ {{ comment.insert_date }}
+                                            {% if comment.author %}
+                                                <a href="{{ comment.author.get_absolute_url }}">
+                                                    {% include "phone/_snippets/user.html" with user=comment.author %}
+                                                </a>
+                                            {% else %}
+                                                Anonīms apmeklētājs
+                                            {% endif %}@ {{ comment.insert_date|date }}
                                         </div>
                                     {% endspaceless %}
                                 </div>

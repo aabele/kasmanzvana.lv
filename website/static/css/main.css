@@ -133,3 +133,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 0 !important;
     border-image-width:0;
 }
+
+.anonymous-comment {
+    opacity:0.6;
+}

@@ -118,7 +118,7 @@ class Phone(mixins.HashidMixin, models.Model):
             self.cat_3 = self.phone[0:6]
 
     def visible_comments(self):
-        return self.comment_set.exclude(author__isnull=True).order_by('-id')
+        return self.comment_set.order_by('-id')
 
     @classmethod
     def get_namespace(cls, prefix=None):

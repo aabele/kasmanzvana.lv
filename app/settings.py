@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'compressor',
     'rest_framework',
     'sorl.thumbnail',
+    'robots',
 
     'phone',
     'user',

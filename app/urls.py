@@ -13,6 +13,7 @@ from user.views import LoginView
 ADMIN_URL = 'admin' if settings.DEBUG else 'admin-26414607'
 
 urlpatterns = [
+    url(r'^robots\.txt$', include('robots.urls')),
     url(r'^sitemap\.xml$', sitemap, sitemap_config),
     url(r'^{0}/'.format(ADMIN_URL), admin.site.urls),
 

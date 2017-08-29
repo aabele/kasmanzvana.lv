@@ -9,14 +9,16 @@ admin.site.register([
 ])
 
 
+@admin.register(models.Phone)
 class PhoneAdmin(admin.ModelAdmin):
     search_fields = ('phone', )
 
-admin.site.register(models.Phone, PhoneAdmin)
 
-
+@admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for comment model
+    """
+    list_display = ('pk', 'phone', 'body', 'author', 'legacy')
+    search_fields = ('phone__phone',)
     exclude = ('author', 'phone')
-
-
-admin.site.register(models.Comment, CommentAdmin)

@@ -126,31 +126,42 @@ class Phone(mixins.HashidMixin, models.Model):
     def visible_comments(self):
         return self.comment_set.order_by('-id')
 
-    def authenticated_comments(self):
-        return self.comment_set.filter(author__isnull=False, legacy=False).order_by('-id')
+    def get_last_authenticated_comment(self):
+        obj = (Comment.objects
+               .filter(phone=self, legacy=False)
+               .exclude(author_id__isnull=True)
+               .order_by('-id')
+               .first())
+
+        return obj
 
     @classmethod
     def get_namespace(cls, prefix=None):
 
-        if not prefix:
-            namespace = [str(i).zfill(2) for i in range(0, 100)]
-            items = cls.objects.only('cat_1').distinct().values_list('cat_1', flat=True)
+        def get_items(key):
+            """
+            Return list of namespace items mixed with existing db records
+            :param key: object field name
+            :return: list containing unique items
+            """
+            if not prefix:
+                namespace = [str(i).zfill(2) for i in range(0, 100)]
+            else:
+                namespace = ['{0}{1}'.format(prefix, str(i).zfill(2)) for i in range(0, 100)]
+            items = cls.objects.only(key).distinct().values_list(key, flat=True)
             return list(set(namespace) & set(items))
+
+        if not prefix:
+            return get_items('cat_1')
 
         if len(prefix) == 2:
-            namespace = ['{0}{1}'.format(prefix, str(i).zfill(2)) for i in range(0, 100)]
-            items = cls.objects.only('cat_2').distinct().values_list('cat_2', flat=True)
-            return list(set(namespace) & set(items))
+            return get_items('cat_2')
 
         if len(prefix) == 4:
-            namespace = ['{0}{1}'.format(prefix, str(i).zfill(2)) for i in range(0, 100)]
-            items = cls.objects.only('cat_3').distinct().values_list('cat_3', flat=True)
-            return list(set(namespace) & set(items))
+            return get_items('cat_3')
 
         if len(prefix) == 6:
-            namespace = ['{0}{1}'.format(prefix, str(i).zfill(2)) for i in range(0, 100)]
-            items = cls.objects.only('phone').distinct().values_list('phone', flat=True)
-            return list(set(namespace) & set(items))
+            return get_items('phone')
 
     def get_absolute_url(self):
         """

@@ -3,16 +3,57 @@
 
 {% block page_title %}{{ COUNTRY_PREFIX }} {{ number }}{% endblock %}
 
-{% block page_description %}{{ object.visible_comments.0.body|striptags }}{% endblock %}
+{% block page_description %}{{ object.visible_comments.first.body|striptags }}{% endblock %}
 
 {% block extra_head %}
+
     <script>
 
         "use strict";
 
         var phone = {
-            "id": "{{ number }}"
+            id: "{{ number }}",
+            isAuthenticated: {% if request.user.is_authenticated %}true{% else %}false{% endif %}
         };
+
+
+        $(function(){
+
+            var $plusVoted = $("#plus-voted");
+            var $minusVoted = $("#minus-voted");
+
+            $("#vote-btn-col a").on("click", function(ev){
+
+                ev.preventDefault();
+
+                if (!phone.isAuthenticated){
+                    return;
+                }
+
+                var choice;
+                var url = "/api/v1/phone/{0}/{1}/";
+
+                if ($(this).hasClass("btn-plus"))
+                    choice = "vote_plus";
+
+                if ($(this).hasClass("btn-minus"))
+                    choice = "vote_minus";
+
+                $.ajax({
+                    url: url.replace("{0}", phone.id).replace("{1}", choice),
+                    method: "POST",
+                    type: "ajax",
+                    success: function(response){
+                        $plusVoted.html(response.get_positive_votes);
+                        $minusVoted.html(response.get_negative_votes);
+                    }
+                });
+
+
+            });
+
+        });
+
 
     </script>
 
@@ -62,15 +103,30 @@
             </a>
         </h1>
         <div class="row">
-                <a href="" class="btn btn-link btn-vote">
-                    Celt 0
+            <div class="col-md-12" id="vote-btn-col">
+                <a href="#" class="btn btn-link btn-vote btn-plus">
+                    Celt
+                    <span id="plus-voted">
+                        {% if object.get_positive_votes %}
+                            {{ object.get_positive_votes }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </span>
                     <i class="fa fa-thumbs-up" style="color:#f4f4f4" aria-hidden="true"></i>
                 </a>
-                <a href="" class="btn btn-link btn-vote">
+                <a href="#" class="btn btn-link btn-vote btn-minus">
                     <i class="fa fa-thumbs-down" style="color:#f4f4f4" aria-hidden="true"></i>
-                    Necelt 0
+                    Necelt
+                    <span id="minus-voted">
+                        {% if object.get_negative_votes %}
+                            {{ object.get_negative_votes }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </span>
                 </a>
-
+            </div>
         </div>
     </div>
 {% endblock %}

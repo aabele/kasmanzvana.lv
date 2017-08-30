@@ -79,6 +79,12 @@ class Phone(mixins.HashidMixin, models.Model):
         self.positive_votes = positive_votes
         self.negative_votes = negative_votes
 
+    def get_positive_votes(self):
+        return PhoneRating.objects.filter(phone=self, value=PhoneRating.PLUS).count()
+
+    def get_negative_votes(self):
+        return PhoneRating.objects.filter(phone=self, value=PhoneRating.MINUS).count()
+
     def vote_plus(self, user):
         """
         Vote plus or minus

@@ -17,4 +17,4 @@ class PhoneSerializer(serializers.ModelSerializer):
         Serializer meta options
         """
         model = models.Phone
-        fields = ('pk', 'phone', 'rating_value', 'positive_votes', 'negative_votes')
+        fields = ('pk', 'phone', 'rating_value', 'get_positive_votes', 'get_negative_votes')

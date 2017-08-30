@@ -34,7 +34,7 @@ body {
     background:none;
     color: #f4f4f4 !important;
 }
-#front-jumbo a {
+#front-jumbo a, #front-jumbo .btn-vote span {
     color: #f4f4f4;
     text-decoration: none;
 }

@@ -1,0 +1,66 @@
+{% extends "blog/base.html" %}
+
+{% block page_title %}
+    Blogs
+{% endblock %}
+
+{% block extra_head %}
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "{% url "website:front" %}",
+                        "name": "Sākums"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@id": "{% url "blog:front" %}",
+                        "name": "Blogs"
+                    }
+                }
+            ]
+        }
+    </script>
+{% endblock %}
+
+{% block blog-main %}
+
+    <div>
+        <h1>
+            <a href="{{ request.path }}">
+                Blogs
+            </a>
+        </h1>
+        <hr>
+
+        {% for object in object_list %}
+
+            <div>
+
+                <h2>
+                    <a href="{{ object.get_absolute_url }}">
+                        {{ object.title }}
+                    </a>
+                </h2>
+
+                <div class="padding1">
+                    {{ object.body|truncatechars:"300" }}
+                </div>
+
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

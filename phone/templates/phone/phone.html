@@ -277,6 +277,16 @@
                                 }
                             }
                         {% endif %}
+                        {% if object.cat_3 %},
+                            {
+                                "@type": "ListItem",
+                                "position": 5,
+                                "item": {
+                                    "@id": "{% url "phones:details" object.phone %}",
+                                    "name": "{{ object.phone|slice:"6:8" }}"
+                                }
+                            }
+                        {% endif %}
                     ]
                 }
             </script>

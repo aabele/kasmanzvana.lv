@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='account_login'),
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^', include('blog.urls', namespace='blog')),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^', include('phone.urls', namespace='phones')),
     url(r'^', include('website.urls', namespace='website')),
     url(r'^', include('user.urls', namespace='users')),

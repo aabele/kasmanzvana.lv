@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'phone',
     'user',
     'website',
+    'blog',
 
 ]
 

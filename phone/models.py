@@ -108,7 +108,6 @@ class Phone(mixins.HashidMixin, models.Model):
         Vote plus or minus
         :param user: user instance
         """
-        print(self, user)
         obj, _ = self.rating_model.objects.get_or_create(phone=self, user=user)
         obj.value = self.rating_model.PLUS
         obj.save()
@@ -118,7 +117,6 @@ class Phone(mixins.HashidMixin, models.Model):
         Vote plus or minus
         :param user: user instance
         """
-        print(self, user)
         obj, _ = self.rating_model.objects.get_or_create(phone=self, user=user)
         obj.value = self.rating_model.MINUS
         obj.save()
@@ -229,8 +227,18 @@ class Comment(mixins.HashidMixin, models.Model):
     legacy = models.BooleanField(default=False, editable=False)
 
     anonymous_session = models.CharField(max_length=200, blank=True, null=True, editable=False)
+
+    author_raw_pk = models.IntegerField(blank=True, null=True)
     author = models.ForeignKey(user_model, blank=True, null=True)
     insert_date = models.DateTimeField(blank=True, null=True, editable=False)
+
+    def handle_author_raw_id(self):
+        if self.author_raw_pk:
+            try:
+                self.author = self.user_model.objects.get(pk=self.author_raw_pk)
+            except user_model.DoesNotExist:
+                pass
+            self.author_raw_pk = None
 
     def __str__(self):
         """
@@ -283,4 +291,5 @@ class Comment(mixins.HashidMixin, models.Model):
     def save(self, *args, **kwargs):
         if not (self.pk and self.insert_date):
             self.insert_date = now()
+        self.handle_author_raw_id()
         super().save(*args, **kwargs)

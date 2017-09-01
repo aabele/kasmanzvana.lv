@@ -27,7 +27,6 @@ class FrontPageView(TemplateView):
         today = timezone.now().date()
         this_month_comments = (models.Comment.objects
                                .filter(insert_date__year=today.year, insert_date__month=today.month)
-                               .filter(pk__gte=1219642)  # safe to remove after 2017.09.01
                                .exclude(author__isnull=True, legacy=True))
 
         data = super().get_context_data(**kwargs)
@@ -41,6 +40,7 @@ class FrontPageView(TemplateView):
         data['this_month_numbers'] = (models.Phone.objects
                                       .filter(pk__in=this_month_comments.values_list('phone_id', flat=True))
                                       .count())
+        data['last_comment'] = models.Comment.objects.exclude(author__isnull=True).last()
         return data
 
 

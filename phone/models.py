@@ -40,6 +40,7 @@ class RatingBase(models.Model):
     )
     value = models.SmallIntegerField(choices=CHOICES, blank=True, null=True)
     user = models.ForeignKey(user_model)
+    insert_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta(object):
         """

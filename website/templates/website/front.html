@@ -6,7 +6,13 @@
     {% include "phone/_snippets/login-block.html" %}
 
     <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
-        <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="col-md-8 text-center">
+
+            <h1 class="text-left">
+                Statistika
+            </h1>
+            <hr>
+
             {% spaceless %}
                 {% for user in last_15_users %}
                     <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
@@ -24,6 +30,15 @@
                 </div>
 
             {% endspaceless %}
+        </div>
+
+        <div class="col-md-4">
+
+            <h1>{% include "phone/_snippets/user.html" with user=last_comment.author %}</h1>
+            <hr>
+
+            {% include "website/includes/comment-card.html" with comment=last_comment from_user_page=True %}
+
         </div>
     </div>
 

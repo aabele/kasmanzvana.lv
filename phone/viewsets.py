@@ -2,7 +2,7 @@
 Application model API viewsets
 """
 
-from rest_framework import viewsets, authentication, permissions, mixins, decorators, response
+from rest_framework import viewsets, authentication, permissions, mixins, decorators
 
 from phone import models
 from phone import serializers
@@ -21,7 +21,7 @@ class PhoneViewSet(mixins.ListModelMixin,
     serializer_class = serializers.PhoneSerializer
 
     def get_object(self):
-        obj, _ = self.model.objects.get_or_create(phone=self.kwargs.get('phone'))
+        obj, _ = self.model.objects.get_or_create(phone=self.kwargs.get('pk'))
         return obj
 
     @decorators.detail_route(methods=['POST'])

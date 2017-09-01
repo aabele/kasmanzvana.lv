@@ -2,11 +2,8 @@
 Application views
 """
 
-from django.contrib import messages
-from django.http import Http404
-from django.views.generic import DetailView, CreateView, TemplateView, ListView
+from django.views.generic import DetailView, ListView
 
-from phone import forms
 from blog import models
 
 

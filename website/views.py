@@ -38,7 +38,9 @@ class FrontPageView(TemplateView):
                                          .exclude(legacy=True)
                                          .count())
         data['this_month_comments'] = this_month_comments.count()
-        data['this_month_numbers'] = models.Phone.objects.filter(pk__in=this_month_comments.values_list('phone_id', flat=True)).count()
+        data['this_month_numbers'] = (models.Phone.objects
+                                      .filter(pk__in=this_month_comments.values_list('phone_id', flat=True))
+                                      .count())
         return data
 
 

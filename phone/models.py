@@ -108,6 +108,7 @@ class Phone(mixins.HashidMixin, models.Model):
         Vote plus or minus
         :param user: user instance
         """
+        print(self, user)
         obj, _ = self.rating_model.objects.get_or_create(phone=self, user=user)
         obj.value = self.rating_model.PLUS
         obj.save()
@@ -117,6 +118,7 @@ class Phone(mixins.HashidMixin, models.Model):
         Vote plus or minus
         :param user: user instance
         """
+        print(self, user)
         obj, _ = self.rating_model.objects.get_or_create(phone=self, user=user)
         obj.value = self.rating_model.MINUS
         obj.save()

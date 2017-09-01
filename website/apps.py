@@ -5,4 +5,4 @@ class WebsiteConfig(AppConfig):
     name = 'website'
 
     def ready(self):
-        from website import signals
+        from website import signals  # noqa

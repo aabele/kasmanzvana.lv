@@ -2,16 +2,14 @@
 Application views
 """
 from allauth.account import views as auth_views
-from django.utils.decorators import method_decorator
-from user.decorators import persist_session_vars
-from django.views.generic import DetailView
-from user import models
-
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView
 
 from user import forms
+from user import models
+from user.decorators import persist_session_vars
 from website import mixins
 
 

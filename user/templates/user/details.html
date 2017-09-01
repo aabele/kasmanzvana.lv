@@ -20,12 +20,35 @@
 {% block body %}
     {% include "phone/_snippets/login-block.html" %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Komentāri</h1>
-            {% if obj.comment_set.all %}
+    <div class="row padding2">
+        <div class="col-md-6">
+            <h1>
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                Komentēja
+            </h1>
+            <hr>
+            {% if object.last_15_comments %}
+                <div class="padding0-1">
+                    {% for comment in object.last_15_comments %}
+                        {% if not forloop.first %}<hr>{% endif %}
+                        {% include "website/includes/comment-card.html" with from_user_page=True %}
+                    {% endfor %}
+                </div>
             {% else %}
-                <p>Vēl nav neviena komentāra</p>
+                <p>Pagaidām vēl nav informācijas.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1>
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                Seko numuriem
+            </h1>
+            <hr>
+            {% if object.follows_numbers %}
+                <div class="padding0-1">
+                </div>
+            {% else %}
+                <p>Pagaidām vēl nav informācijas.</p>
             {% endif %}
         </div>
     </div>

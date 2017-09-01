@@ -17,3 +17,6 @@ class User(mixins.HashidMixin, AbstractUser):
 
     def get_absolute_url(self):
         return reverse('users:details', kwargs={'pk': self.get_hashid_pk()})
+
+    def last_15_comments(self):
+        return self.comment_set.all().order_by('-id')[:15]

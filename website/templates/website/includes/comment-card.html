@@ -1,0 +1,39 @@
+<div class="media {% if not comment.author %} anonymous-comment{% endif %}">
+    {% if comment.author and not from_user_page %}
+        <div class="media-left">
+            <a href="{{ comment.author.get_absolute_url }}">
+                {% include "website/utils/avatar.html" with size="64" avatar=comment.author.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+            </a>
+        </div>
+    {% endif %}
+    <div class="media-body">
+
+        {% spaceless %}
+            <h4 class="media-heading">
+                {% if not from_user_page %}
+                    {% if comment.author %}
+                        <a href="{{ comment.author.get_absolute_url }}">
+                            {% include "phone/_snippets/user.html" with user=comment.author %}
+                        </a>
+                    {% else %}
+                        Anonīms apmeklētājs
+                    {% endif %}
+                {% else %}
+                    <a href="{{ comment.phone.get_absolute_url }}">
+                        {{ COUNTRY_PREFIX }} {{ comment.phone }}
+                    </a>
+                {% endif %}
+                <small>@ {{ comment.insert_date|date }}</small>
+            </h4>
+        {% endspaceless %}
+
+        <div>
+            {% if comment.is_admin %}
+                {{ comment.body|safe|linebreaks }}
+            {% else %}
+                {{ comment.body|linebreaks }}
+            {% endif %}
+        </div>
+
+    </div>
+</div>

@@ -9,6 +9,7 @@ from phone import viewsets
 
 router_v1 = DefaultRouter()
 router_v1.register(r'phone', viewsets.PhoneViewSet, 'phone')
+router_v1.register(r'comment', viewsets.CommentViewSet, 'comment')
 
 urlpatterns = [
 

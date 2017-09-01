@@ -159,7 +159,7 @@
                                     <div class="media-body">
 
                                         {% spaceless %}
-                                            <h4>
+                                            <h4 class="media-heading">
                                                 {% if comment.author %}
                                                     <a href="{{ comment.author.get_absolute_url }}">
                                                         {% include "phone/_snippets/user.html" with user=comment.author %}

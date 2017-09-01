@@ -19,5 +19,5 @@ def notify_admin_about_comment(sender, instance, created, **kwargs):
         mail_admins(
             'New message from kasmanzvana.lv visitor',
             ('https://kasmanzvana.lv/{0}/phone/comment/{1}/change/\n\n'
-             'Comment: {3}').format(ADMIN_URL, instance.pk, instance.body)
+             'Comment: {2}').format(ADMIN_URL, instance.pk, instance.body)
         )

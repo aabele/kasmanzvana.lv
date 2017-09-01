@@ -148,27 +148,37 @@
                          <div class="padding0-1">
                             {% for comment in object.visible_comments %}
                                 {% if not forloop.first %}<hr>{% endif %}
-                                <div class="{% if not comment.author %} anonymous-comment{% endif %}">
-                                    <div class="lead">
-                                        {% if comment.is_admin %}
-                                            {{ comment.body|safe|linebreaks }}
-                                        {% else %}
-                                            {{ comment.body|linebreaks }}
-                                        {% endif %}
-                                    </div>
-
-                                    {% spaceless %}
-                                        <div class="meta">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            {% if comment.author %}
-                                                <a href="{{ comment.author.get_absolute_url }}">
-                                                    {% include "phone/_snippets/user.html" with user=comment.author %}
-                                                </a>
-                                            {% else %}
-                                                Anonīms apmeklētājs
-                                            {% endif %}@ {{ comment.insert_date|date }}
+                                <div class="media {% if not comment.author %} anonymous-comment{% endif %}">
+                                    {% if comment.author %}
+                                        <div class="media-left">
+                                            <a href="{{ comment.author.get_absolute_url }}">
+                                                {% include "website/utils/avatar.html" with size="64" avatar=comment.author.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+                                            </a>
                                         </div>
-                                    {% endspaceless %}
+                                    {% endif %}
+                                    <div class="media-body">
+
+                                        {% spaceless %}
+                                            <h4>
+                                                {% if comment.author %}
+                                                    <a href="{{ comment.author.get_absolute_url }}">
+                                                        {% include "phone/_snippets/user.html" with user=comment.author %}
+                                                    </a>
+                                                {% else %}
+                                                    Anonīms apmeklētājs
+                                                {% endif %}<small>@ {{ comment.insert_date|date }}</small>
+                                            </h4>
+                                        {% endspaceless %}
+
+                                        <div>
+                                            {% if comment.is_admin %}
+                                                {{ comment.body|safe|linebreaks }}
+                                            {% else %}
+                                                {{ comment.body|linebreaks }}
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>

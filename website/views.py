@@ -31,10 +31,12 @@ class FrontPageView(TemplateView):
                                .exclude(author__isnull=True, legacy=True))
 
         data = super().get_context_data(**kwargs)
+        data['last_15_users'] = user_model.objects.exclude(is_staff=True).order_by('-id')[:15]
+        data['total_registered_count'] = user_model.objects.exclude(is_staff=True).count()
         data['this_month_registered'] = (user_model.objects
                                          .filter(date_joined__year=today.year, date_joined__month=today.month)
                                          .exclude(legacy=True)
-                                         .order_by('-id'))
+                                         .count())
         data['this_month_comments'] = this_month_comments.count()
         data['this_month_numbers'] = models.Phone.objects.filter(pk__in=this_month_comments.values_list('phone_id', flat=True)).count()
         return data

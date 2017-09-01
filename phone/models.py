@@ -235,7 +235,7 @@ class Comment(mixins.HashidMixin, models.Model):
     def handle_author_raw_id(self):
         if self.author_raw_pk:
             try:
-                self.author = self.user_model.objects.get(pk=self.author_raw_pk)
+                self.author = user_model.objects.get(pk=self.author_raw_pk)
             except user_model.DoesNotExist:
                 pass
             self.author_raw_pk = None

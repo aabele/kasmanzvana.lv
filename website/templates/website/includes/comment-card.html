@@ -36,9 +36,9 @@
                 {% endif %}
             {% else %}
                 {% if truncate %}
-                    {{ comment.body|linebreaks }}
-                {% else %}
                     {{ comment.body|truncatechars:"200"|linebreaks }}
+                {% else %}
+                    {{ comment.body|linebreaks }}
                 {% endif %}
             {% endif %}
         </div>

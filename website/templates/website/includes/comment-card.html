@@ -29,9 +29,17 @@
 
         <div>
             {% if comment.is_admin %}
-                {{ comment.body|safe|linebreaks }}
+                {% if truncate %}
+                    {{ comment.body|safe|linebreaks|truncatechars:"200" }}
+                {% else %}
+                    {{ comment.body|safe|linebreaks }}
+                {% endif %}
             {% else %}
-                {{ comment.body|linebreaks }}
+                {% if truncate %}
+                    {{ comment.body|linebreaks }}
+                {% else %}
+                    {{ comment.body|linebreaks|truncatechars:"200" }}
+                {% endif %}
             {% endif %}
         </div>
 

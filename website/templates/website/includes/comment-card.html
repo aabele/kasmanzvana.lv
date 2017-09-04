@@ -30,7 +30,7 @@
         <div>
             {% if comment.is_admin %}
                 {% if truncate %}
-                    {{ comment.body|safe|linebreaks|truncatechars:"200" }}
+                    {{ comment.body|truncatechars:"200"|safe|linebreaks }}
                 {% else %}
                     {{ comment.body|safe|linebreaks }}
                 {% endif %}
@@ -38,7 +38,7 @@
                 {% if truncate %}
                     {{ comment.body|linebreaks }}
                 {% else %}
-                    {{ comment.body|linebreaks|truncatechars:"200" }}
+                    {{ comment.body|truncatechars:"200"|linebreaks }}
                 {% endif %}
             {% endif %}
         </div>

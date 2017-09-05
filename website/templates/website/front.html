@@ -5,37 +5,6 @@
 
     {% include "phone/_snippets/login-block.html" %}
 
-    <div class="row padding3">
-        <div class="col-md-4">
-            <p class="text-center" style="font-size:50pt">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
-            </p>
-            <h1>Nepalaid garām</h1>
-            <p>
-                Seko līdzi sev interesējošiem numuriem un saņem ziņu tiklīdz mēs par tiem uzzinām kautko jaunu.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <p class="text-center" style="font-size:50pt">
-                <i class="fa fa-users" aria-hidden="true"></i>
-            </p>
-            <h1>Vērtē numurus</h1>
-            <p>
-                (Drīzumā) Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <p class="text-center" style="font-size:50pt">
-                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-            </p>
-            <h2>Verificē savu numuru</h2>
-            <p>
-                (Drīzumā) Verificē savu numuru un pārvaldi to, uzzini sava numura sekotājus un noskaidro kāpēc,
-                publicē oficiālu kontaktinformāciju.
-            </p>
-        </div>
-    </div>
-
     <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
         <div class="col-md-8 text-center">
 
@@ -70,6 +39,37 @@
 
             {% include "website/includes/comment-card.html" with comment=last_comment from_user_page=True truncate=True %}
 
+        </div>
+    </div>
+
+    <div class="row padding3">
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </p>
+            <h1>Nepalaid garām</h1>
+            <p>
+                Seko līdzi sev interesējošiem numuriem un saņem ziņu tiklīdz mēs par tiem uzzinām kautko jaunu.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </p>
+            <h1>Vērtē numurus</h1>
+            <p>
+                (Drīzumā) Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="text-center" style="font-size:50pt">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            </p>
+            <h2>Verificē savu numuru</h2>
+            <p>
+                (Drīzumā) Verificē savu numuru un pārvaldi to, uzzini sava numura sekotājus un noskaidro kāpēc,
+                publicē oficiālu kontaktinformāciju.
+            </p>
         </div>
     </div>
 

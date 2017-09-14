@@ -49,18 +49,18 @@ def assign_anonymous_comments_generic(sender, user, request, **kwargs):
     _assign(request.session.get('_ask'), user)
 
 
-@receiver(post_save, sender=User)
-def notify_admin_about_new_user(sender, instance, created, **kwargs):
-    """
-    Send email notification about new user
-    """
-    if created:
-        mail_admins(
-            'New user registered in kasmanzvana.lv',
-            ('https://kasmanzvana.lv/{0}/user/user/{1}/change/'
-             '\n\n'
-             'Vārds: {2}\n'
-             'Uzvārds: {3}\n'
-             'Epasts: {4}').format(ADMIN_URL, instance.pk, instance.first_name,
-                                   instance.last_name, instance.email)
-        )
+# @receiver(post_save, sender=User)
+# def notify_admin_about_new_user(sender, instance, created, **kwargs):
+#     """
+#     Send email notification about new user
+#     """
+#     if created:
+#         mail_admins(
+#             'New user registered in kasmanzvana.lv',
+#             ('https://kasmanzvana.lv/{0}/user/user/{1}/change/'
+#              '\n\n'
+#              'Vārds: {2}\n'
+#              'Uzvārds: {3}\n'
+#              'Epasts: {4}').format(ADMIN_URL, instance.pk, instance.first_name,
+#                                    instance.last_name, instance.email)
+#         )

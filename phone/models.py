@@ -122,6 +122,20 @@ class Phone(mixins.HashidMixin, models.Model):
         obj.value = self.rating_model.MINUS
         obj.save()
 
+    def follow(self, user):
+        """
+        Add phone to the user following list
+        :param user: user instance
+        """
+        user.following_list.add(self)
+
+    def unfollow(self, user):
+        """
+        Remove phone from the user following list
+        :param user: user instance
+        """
+        user.following_list.remove(self)
+
     def total_votes(self):
         return self.rating_model.objects.filter(phone=self).count()
 

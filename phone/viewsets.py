@@ -21,6 +21,10 @@ class PhoneViewSet(mixins.ListModelMixin,
     serializer_class = serializers.PhoneSerializer
 
     def get_object(self):
+        """
+        Find object by its phone number
+        :return: phone object
+        """
         obj, _ = self.model.objects.get_or_create(phone=self.kwargs.get('pk'))
         return obj
 
@@ -42,6 +46,36 @@ class PhoneViewSet(mixins.ListModelMixin,
         """
         obj = self.get_object()
         obj.vote_minus(self.request.user)
+        return self.retrieve(*args, **kwargs)
+
+    @decorators.detail_route(methods=['POST'])
+    def vote_minus(self, *args, **kwargs):
+        """
+        User vote that this number is NOT ok to take
+        :return: string
+        """
+        obj = self.get_object()
+        obj.vote_minus(self.request.user)
+        return self.retrieve(*args, **kwargs)
+
+    @decorators.detail_route(methods=['POST'])
+    def follow(self, *args, **kwargs):
+        """
+        User will follow the news from this object
+        :return: string
+        """
+        obj = self.get_object()
+        obj.follow(self.request.user)
+        return self.retrieve(*args, **kwargs)
+
+    @decorators.detail_route(methods=['POST'])
+    def unfollow(self, *args, **kwargs):
+        """
+        User will unfollow the news from this object
+        :return: string
+        """
+        obj = self.get_object()
+        obj.unfollow(self.request.user)
         return self.retrieve(*args, **kwargs)
 
 

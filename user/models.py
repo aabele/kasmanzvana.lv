@@ -15,6 +15,8 @@ class User(mixins.HashidMixin, AbstractUser):
     is_banned = models.BooleanField(default=False)
     legacy = models.BooleanField(default=False)
 
+    following_list = models.ManyToManyField('phone.Phone', blank=True)
+
     def get_absolute_url(self):
         return reverse('users:details', kwargs={'pk': self.get_hashid_pk()})
 

@@ -44,8 +44,15 @@
                 Seko numuriem
             </h1>
             <hr>
-            {% if object.follows_numbers %}
+            {% if object.following_list.all %}
                 <div class="padding0-1">
+                    {% for number in object.following_list.all %}
+                        <h4>
+                            <a href="{{ number.get_absolute_url }}">
+                                {{ COUNTRY_PREFIX }} {{ number }}
+                            </a>
+                        </h4>
+                    {% endfor %}
                 </div>
             {% else %}
                 <p>Pagaidām vēl nav informācijas.</p>

@@ -136,6 +136,12 @@ class Phone(mixins.HashidMixin, models.Model):
         """
         user.following_list.remove(self)
 
+    def followers(self):
+        """
+        Get the users that follow this number
+        """
+        return self.user_set.filter(legacy=False, is_banned=False)
+
     def total_votes(self):
         return self.rating_model.objects.filter(phone=self).count()
 

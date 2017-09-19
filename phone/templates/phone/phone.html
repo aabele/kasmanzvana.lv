@@ -1,5 +1,6 @@
 {% extends "phone/base.html" %}
 {% load extra_tags %}
+{% load static %}
 
 {% block page_title %}{{ COUNTRY_PREFIX }} {{ number }}{% endblock %}
 
@@ -7,6 +8,7 @@
 
 {% block extra_head %}
 
+    <script src="{% static "js/phone.js" %}"></script>
     <script>
 
         "use strict";
@@ -19,39 +21,11 @@
 
         $(function(){
 
-            var $plusVoted = $("#plus-voted");
-            var $minusVoted = $("#minus-voted");
+            $('[data-toggle="tooltip"]').tooltip();
 
-            $("#vote-btn-col a").on("click", function(ev){
+            Rating("/api/v1/phone/{0}/{1}/", $("#plus-voted"), $("#minus-voted"), $("#vote-btn-col a"), phone);
 
-                ev.preventDefault();
-
-                if (!phone.isAuthenticated){
-                    return;
-                }
-
-                var choice;
-                var url = "/api/v1/phone/{0}/{1}/";
-
-                if ($(this).hasClass("btn-plus"))
-                    choice = "vote_plus";
-
-                if ($(this).hasClass("btn-minus"))
-                    choice = "vote_minus";
-
-                $.ajax({
-                    url: url.replace("{0}", phone.id).replace("{1}", choice),
-                    method: "POST",
-                    type: "ajax",
-                    success: function(response){
-                        $plusVoted.html(response.get_positive_votes);
-                        $minusVoted.html(response.get_negative_votes);
-                    }
-                });
-
-
-            });
-
+            Follow($("#follow-btn"), phone);
         });
 
 
@@ -137,6 +111,18 @@
     <div class="row">
         <div class="col-md-12 {% if request.user.is_authenticated %}padding4{% endif %}">
 
+            {% if object.followers %}
+                <div class="padding0-1 text-center">
+                    <h5>Šim numuram seko...</h5>
+                    {% for user in object.followers %}
+                        <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
+                            {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
             <div class="row">
                 <div class="col-md-8">
                     <h1>
@@ -170,6 +156,21 @@
                             apmeklētājiem.
                         {% endif %}
                     </p>
+
+                    <div>
+
+                        {% if object in user.following_list.all %}
+                            <a href="#" id="follow-btn" data-action="unfollow" class="padding1 btn btn-block btn-lg btn-primary">
+                                Pārtraukt sekošanu
+                            </a>
+                        {% else %}
+                            <a href="#" id="follow-btn" data-action="follow" class="padding1 btn btn-block btn-lg btn-primary">
+                                Sekot numuram
+                            </a>
+                        {% endif %}
+
+                    </div>
+
 
                     <h1>Mūsu vērtējums</h1>
                     <hr>

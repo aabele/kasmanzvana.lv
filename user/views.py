@@ -5,17 +5,29 @@ from allauth.account import views as auth_views
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, ListView
 
 from user import forms
 from user import models
 from user.decorators import persist_session_vars
 from website import mixins
+from phone.models import Comment
 
 
 @method_decorator(persist_session_vars(['_ask']), name='dispatch')
 class LoginView(auth_views.LoginView):
     pass
+
+
+class PhoneDashboardView(ListView):
+    """
+    The latest comments from the phones that user follows
+    """
+    model = Comment
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset
 
 
 class UserDetailView(DetailView):

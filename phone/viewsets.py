@@ -49,16 +49,6 @@ class PhoneViewSet(mixins.ListModelMixin,
         return self.retrieve(*args, **kwargs)
 
     @decorators.detail_route(methods=['POST'])
-    def vote_minus(self, *args, **kwargs):
-        """
-        User vote that this number is NOT ok to take
-        :return: string
-        """
-        obj = self.get_object()
-        obj.vote_minus(self.request.user)
-        return self.retrieve(*args, **kwargs)
-
-    @decorators.detail_route(methods=['POST'])
     def follow(self, *args, **kwargs):
         """
         User will follow the news from this object

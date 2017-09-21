@@ -3,15 +3,16 @@ Application views
 """
 from allauth.account import views as auth_views
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, UpdateView, ListView
 
+from phone.models import Comment
 from user import forms
 from user import models
 from user.decorators import persist_session_vars
 from website import mixins
-from phone.models import Comment
 
 
 @method_decorator(persist_session_vars(['_ask']), name='dispatch')
@@ -19,14 +20,18 @@ class LoginView(auth_views.LoginView):
     pass
 
 
-class PhoneDashboardView(ListView):
+class PhoneDashboardView(LoginRequiredMixin, ListView):
     """
     The latest comments from the phones that user follows
     """
     model = Comment
+    template_name = 'user/dashboard.html'
+    paginate_by = 15
+    ordering = ('-id', )
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = queryset.filter(phone__pk__in=[f.pk for f in self.request.user.following_list.all()])
         return queryset
 
 

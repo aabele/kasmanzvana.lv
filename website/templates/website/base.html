@@ -67,6 +67,11 @@
 
                             <li>{% include "phone/_snippets/user.html" with user=request.user %}</li>
                             <li>
+                                <a href="{% url "users:phone_dashboard" %}">
+                                    Mani jaunumi
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{% url "account_logout" %}?next={{ request.path }}">
                                     Atslēgties
                                 </a>

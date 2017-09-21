@@ -115,7 +115,7 @@
                 <div class="padding0-1 text-center">
                     <h5>Šim numuram seko...</h5>
                     {% for user in object.followers %}
-                        <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
+                        <a href="{% include "phone/_snippets/user_link.html" %}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
                             {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
                         </a>
                     {% endfor %}

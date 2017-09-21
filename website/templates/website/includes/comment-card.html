@@ -12,7 +12,7 @@
             <h4 class="media-heading">
                 {% if not from_user_page %}
                     {% if comment.author %}
-                        <a href="{{ comment.author.get_absolute_url }}">
+                        <a href="{% include "phone/_snippets/user_link.html" with user=comment.author %}">
                             {% include "phone/_snippets/user.html" with user=comment.author %}
                         </a>
                     {% else %}
@@ -24,6 +24,15 @@
                     </a>
                 {% endif %}
                 <small>@ {{ comment.insert_date|date }}</small>
+                {% if show_number %}
+                    <br>
+                    <div class="padding1">
+                        <small>
+                            Komentēja par numuru <a href="{{ comment.phone.get_absolute_url }}">{{ COUNTRY_PREFIX }} {{ comment.phone }}</a>
+                        </small>
+                    </div>
+
+                {% endif %}
             </h4>
         {% endspaceless %}
 

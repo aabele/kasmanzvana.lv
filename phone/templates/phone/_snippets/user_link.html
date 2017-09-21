@@ -1,0 +1,1 @@
+{% if user.pk == request.user.pk %}{% url "users:phone_dashboard" %}{% else %}{{ user.get_absolute_url }}{% endif %}

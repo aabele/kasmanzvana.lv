@@ -15,7 +15,7 @@
 
             {% spaceless %}
                 {% for user in last_15_users %}
-                    <a href="{{ user.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
+                    <a href="{% include "phone/_snippets/user_link.html" %}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
                         {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
                     </a>
                 {% endfor %}
@@ -58,7 +58,7 @@
             </p>
             <h1>Vērtē numurus</h1>
             <p>
-                (Drīzumā) Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
+                Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
             </p>
         </div>
         <div class="col-md-4">

@@ -14,7 +14,7 @@ def _assign(session_id, user):
     :param session_id: anonymous session ID
     :param user: authenticated user
     """
-    for item in models.Comment.objects.filter(anonymous_session=session_id):
+    for item in models.Comment.objects.filter(anonymous_session=session_id)[:3]:
         item.author = user
         item.save()
 
@@ -29,7 +29,9 @@ def assign_anonymous_comments(sender, user, request, **kwargs):
     :param kwargs:
     :return:
     """
-    _assign(request.session.get('_ask'), user)
+    user_id = request.session.get('_ask')
+    if user_id:
+        _assign(user_id, user)
 
 
 @receiver(generic_user_logged_id)

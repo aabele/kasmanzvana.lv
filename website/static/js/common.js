@@ -112,11 +112,16 @@ var space = {};
 
         this.$form = $("#number-form");
         this.$number = this.$form.find("#number");
+        this.$number.on("keypress", $.proxy(this._validateNumber, this));
         this.$form.on("submit", $.proxy(this._formSubmit, this));
 
     }
 
     KasManZvana.prototype = {
+
+        _validateNumber: function(ev) {
+            this.$number.val(this.$number.val().slice(0, 8))
+        },
 
         /**
          * Google analytics

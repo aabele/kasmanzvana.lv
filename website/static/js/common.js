@@ -120,7 +120,7 @@ var space = {};
     KasManZvana.prototype = {
 
         _validateNumber: function(ev) {
-            this.$number.val(this.$number.val().slice(0, 8))
+            this.$number.val(this.$number.val().slice(0, 7))
         },
 
         /**

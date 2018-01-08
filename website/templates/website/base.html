@@ -19,7 +19,7 @@
     </script>
 
     <meta name="description" content="{% block page_description %}Noskaidro nezināmā numura iespējamo īpašnieku{% endblock %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -168,7 +168,11 @@
 
         </div>
 
+
+
     </div>
+
+    {% include "website/includes/cookiewarning.html" %}
 
     <script type="text/template" id="template-table">
 
@@ -215,6 +219,13 @@
     </script>
 
     <div id="modal-wrapper"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"
+            integrity="sha256-NjbogQqosWgor0UBdCURR5dzcvAgHnfUZMcZ8RCwkk8="
+            crossorigin="anonymous"></script>
+
+    {% static "js/cookies.js" as js %}
+    {% include "website/utils/compress_js.html" with path=js %}
 
 </body>
 </html>

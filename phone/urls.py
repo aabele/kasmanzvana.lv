@@ -13,6 +13,7 @@ router_v1.register(r'comment', viewsets.CommentViewSet, 'comment')
 
 urlpatterns = [
 
+    url(r'^jaunakie-komentari/$', views.LatestCommentView.as_view(), name='latest-comments'),
     url(r'^numurs/(?P<number>[0-9]{1,8})/$', views.PhoneDetailView.as_view(), name='details'),
     url(r'^komentars/(?P<pk>\w+)/$', views.CommentProfileView.as_view(), name='comment_profile'),
     url(r'^komentet/$', views.CommentCreateView.as_view(), name='add_comment'),

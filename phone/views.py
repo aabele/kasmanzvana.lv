@@ -3,7 +3,7 @@ Application views
 """
 from django.contrib import messages
 from django.http import Http404
-from django.views.generic import DetailView, CreateView, TemplateView
+from django.views.generic import DetailView, CreateView, TemplateView, ListView
 
 from phone import forms
 from phone import models
@@ -110,3 +110,12 @@ class CategoryView(TemplateView):
         data = super().get_context_data(**kwargs)
         data['namespace'] = self.get_namespace_items()
         return data
+
+
+class LatestCommentView(ListView):
+    """ Display list of latest comments """
+
+    model = models.Comment
+    ordering = ('-id', )
+    template_name = 'phone/comment/latest.html'
+    paginate_by = 10

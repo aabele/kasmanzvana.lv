@@ -8,9 +8,9 @@
     <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
         <div class="col-md-8 text-center">
 
-            <h1 class="text-left">
+            <h2 class="text-left h1">
                 Statistika
-            </h1>
+            </h2>
             <hr>
 
             {% spaceless %}
@@ -39,6 +39,12 @@
 
             {% include "website/includes/comment-card.html" with comment=last_comment from_user_page=True truncate=True %}
 
+            <div class="text-right">
+                <a href="{% url "phones:latest-comments" %}">
+                    Jaunākie komentāri
+                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,48 @@
+{% extends "phone/base.html" %}
+{% load extra_tags %}
+{% load static %}
+
+{% block page_title %}Pēdējie komentētie numuri{% endblock %}
+
+{% block page_description %}{{ object.visible_comments.first.body|striptags }}{% endblock %}
+
+{% block body %}
+
+    {% include "phone/_snippets/login-block.html" %}
+
+    <div class="row">
+        <div class="col-md-12 {% if request.user.is_authenticated %}padding4{% endif %}">
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>
+                        <i class="fa fa-comments" aria-hidden="true"></i>
+                        Pēdējie komentētie numuri
+                    </h1>
+                    <hr>
+                     <div class="padding0-1">
+                        {% for comment in object_list %}
+                            {% if not forloop.first %}<hr>{% endif %}
+                            {% if forloop.counter == 2 %}
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="fluid"
+                                     data-ad-layout-key="-gw-b+2p-3v-1b"
+                                     data-ad-client="ca-pub-5690991418198416"
+                                     data-ad-slot="1566886288"></ins>
+                                <script>
+                                     (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            {% endif %}
+                            {% include "website/includes/comment-card.html" with from_user_page=True show_author=True %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+

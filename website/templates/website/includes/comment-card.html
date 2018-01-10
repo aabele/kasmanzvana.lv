@@ -19,6 +19,12 @@
                         Anonīms apmeklētājs
                     {% endif %}
                 {% else %}
+
+                    {% if show_author and comment.author %}
+                        <a href="{% include "phone/_snippets/user_link.html" with user=comment.author %}">
+                            {% include "phone/_snippets/user.html" with user=comment.author %}
+                        </a> par
+                    {% endif %}
                     <a href="{{ comment.phone.get_absolute_url }}">
                         {{ COUNTRY_PREFIX }} {{ comment.phone }}
                     </a>

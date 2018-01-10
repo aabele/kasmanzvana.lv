@@ -122,7 +122,6 @@
                 </div>
             {% endif %}
 
-
             <div class="row">
                 <div class="col-md-8">
                     <h1>
@@ -134,6 +133,19 @@
                          <div class="padding0-1">
                             {% for comment in object.visible_comments %}
                                 {% if not forloop.first %}<hr>{% endif %}
+                                {% if forloop.counter == 2 %}
+                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-format="fluid"
+                                         data-ad-layout-key="-gw-b+2p-3v-1b"
+                                         data-ad-client="ca-pub-5690991418198416"
+                                         data-ad-slot="1566886288"></ins>
+                                    <script>
+                                         (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
+                                    <hr>
+                                {% endif %}
                                 {% include "website/includes/comment-card.html" %}
                             {% endfor %}
                         </div>

@@ -6,6 +6,15 @@
             </a>
         </div>
     {% endif %}
+
+    {% if comment.author and show_author %}
+        <div class="media-left">
+            <a href="{{ comment.author.get_absolute_url }}">
+                {% include "website/utils/avatar.html" with size="64" avatar=comment.author.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+            </a>
+        </div>
+    {% endif %}
+
     <div class="media-body">
 
         {% spaceless %}
@@ -19,7 +28,6 @@
                         Anonīms apmeklētājs
                     {% endif %}
                 {% else %}
-
                     {% if show_author and comment.author %}
                         <a href="{% include "phone/_snippets/user_link.html" with user=comment.author %}">
                             {% include "phone/_snippets/user.html" with user=comment.author %}

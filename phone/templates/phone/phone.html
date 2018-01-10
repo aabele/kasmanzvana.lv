@@ -129,24 +129,43 @@
                         Apmeklētāju komentāri
                     </h1>
                     <hr>
-                    {% if object.visible_comments %}
+                    {% if comment_page %}
                          <div class="padding0-1">
-                            {% for comment in object.visible_comments %}
-                                {% if not forloop.first %}<hr>{% endif %}
-                                {% if forloop.counter == 2 %}
-                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-format="fluid"
-                                         data-ad-layout-key="-gw-b+2p-3v-1b"
-                                         data-ad-client="ca-pub-5690991418198416"
-                                         data-ad-slot="1566886288"></ins>
-                                    <script>
-                                         (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                                {% endif %}
-                                {% include "website/includes/comment-card.html" %}
-                            {% endfor %}
+                             {% for comment in comment_page %}
+                                 {% if not forloop.first and not forloop.counter == 2 %}<hr>{% endif %}
+                                 {% if forloop.counter == 2 %}
+                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                 <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="fluid"
+                                     data-ad-layout-key="-gw-b+2p-3v-1b"
+                                     data-ad-client="ca-pub-5690991418198416"
+                                     data-ad-slot="1566886288"></ins>
+                                 <script>
+                                     (adsbygoogle = window.adsbygoogle || []).push({});
+                                 </script>
+                                 {% endif %}
+                                     {% include "website/includes/comment-card.html" %}
+                                 {% endfor %}
+
+                                 <hr>
+
+                                 <ul class="pagination pagination-centered pagination-sm">
+
+                                     {% if comment_page.has_previous %}
+                                        <li><a href="?page={{ comment_page.previous_page_number }}"><</a></li>
+                                     {% endif %}
+
+                                     {% for i in comment_page.paginator.page_range %}
+                                         <li {% if comment_page.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+                                     {% endfor %}
+
+                                     {% if comment_page.has_next %}
+                                         <li><a href="?page={{ comment_page.next_page_number }}">></a></li>
+                                     {% endif %}
+
+                                 </ul>
+
                         </div>
                     {% else %}
                         <p>Pagaidām vēl nav informācijas.</p>

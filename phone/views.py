@@ -2,6 +2,7 @@
 Application views
 """
 from django.contrib import messages
+from django.core import paginator
 from django.http import Http404
 from django.views.generic import DetailView, CreateView, TemplateView, ListView
 
@@ -16,9 +17,22 @@ class PhoneDetailView(DetailView):
     model = models.Phone
     comment_form = forms.CommentForm
     template_name = 'phone/phone.html'
+    comments_paginate_by = 10
 
-    def get(self, *args, **kwargs):
-        return super().get(*args, **kwargs)
+    def get_paginated_comments(self):
+
+        if isinstance(self.object, dict):
+            return []
+
+        page = self.request.GET.get('page')
+        comments_paginator = paginator.Paginator(self.object.visible_comments(), self.comments_paginate_by)
+        # Catch invalid page numbers
+        try:
+            page_obj = comments_paginator.page(page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            page_obj = comments_paginator.page(1)
+
+        return page_obj
 
     def get_object(self):
         try:
@@ -53,6 +67,7 @@ class PhoneDetailView(DetailView):
         data['number'] = self.get_number()
         data['number_in_db'] = self.get_object() != {}
         data['form'] = self.comment_form()
+        data['comment_page'] = self.get_paginated_comments()
         return data
 
 

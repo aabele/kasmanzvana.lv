@@ -41,6 +41,12 @@
     <script>
         $(space.start);
     </script>
+
+    {% if not debug %}
+        {% static "js/mixpanel.com.js" as js %}
+        {% include "website/utils/compress_js.html" with path=js %}
+    {% endif %}
+
 </head>
 <body>
 

@@ -22,7 +22,7 @@
                     <hr>
                      <div class="padding0-1">
                         {% for comment in object_list %}
-                            {% if not forloop.first %}<hr>{% endif %}
+                            {% if not forloop.first and not forloop.counter == 2 %}<hr>{% endif %}
                             {% if forloop.counter == 2 %}
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <ins class="adsbygoogle"

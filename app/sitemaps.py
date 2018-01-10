@@ -34,6 +34,7 @@ class StaticSitemap(sitemaps.Sitemap):
             'website:takedown',
             'website:agreement',
             'website:contacts',
+            'phones:latest-comments',
         ]
 
     def location(self, item):

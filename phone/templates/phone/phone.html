@@ -130,41 +130,44 @@
                     </h1>
                     <hr>
                     {% if comment_page %}
-                         <div class="padding0-1">
-                             {% for comment in comment_page %}
-                                 {% if not forloop.first and not forloop.counter == 2 %}<hr>{% endif %}
-                                 {% if forloop.counter == 2 %}
-                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                 <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-format="fluid"
-                                     data-ad-layout-key="-gw-b+2p-3v-1b"
-                                     data-ad-client="ca-pub-5690991418198416"
-                                     data-ad-slot="1566886288"></ins>
-                                 <script>
-                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                 </script>
-                                 {% endif %}
-                                     {% include "website/includes/comment-card.html" %}
-                                 {% endfor %}
+                        <div class="padding0-1">
+                            {% for comment in comment_page %}
+                                {% if not forloop.first and not forloop.counter == 2 %}<hr>{% endif %}
+                                {% if forloop.counter == 2 %}
+                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                    <ins class="adsbygoogle"
+                                        style="display:block; text-align:center;"
+                                        data-ad-layout="in-article"
+                                        data-ad-format="fluid"
+                                        data-ad-client="ca-pub-5690991418198416"
+                                        data-ad-slot="3439941392"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
 
-                                 <hr>
+                                {% endif %}
+                                {% include "website/includes/comment-card.html" %}
+                            {% endfor %}
 
-                                 <ul class="pagination pagination-centered pagination-sm">
+                            <hr>
 
-                                     {% if comment_page.has_previous %}
-                                        <li><a href="?page={{ comment_page.previous_page_number }}"><</a></li>
-                                     {% endif %}
+                            {% if comment_page.has_other_pages %}
+                                <ul class="pagination pagination-centered pagination-sm">
 
-                                     {% for i in comment_page.paginator.page_range %}
-                                         <li {% if comment_page.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
-                                     {% endfor %}
+                                    {% if comment_page.has_previous %}
+                                       <li><a href="?page={{ comment_page.previous_page_number }}"><</a></li>
+                                    {% endif %}
 
-                                     {% if comment_page.has_next %}
-                                         <li><a href="?page={{ comment_page.next_page_number }}">></a></li>
-                                     {% endif %}
+                                    {% for i in comment_page.paginator.page_range %}
+                                        <li {% if comment_page.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+                                    {% endfor %}
 
-                                 </ul>
+                                    {% if comment_page.has_next %}
+                                        <li><a href="?page={{ comment_page.next_page_number }}">></a></li>
+                                    {% endif %}
+
+                                </ul>
+                            {% endif %}
 
                         </div>
                     {% else %}
@@ -275,7 +278,16 @@
                     "krāpnieks" tiks dzēsti. Ja uzskatāt ka šo numuru izmanto kāds krāpnieks, tad
                     paskaidrojiet arī kāpēc.
                 </p>
-
+                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                 <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-gw-b+2p-3v-1b"
+                     data-ad-client="ca-pub-5690991418198416"
+                     data-ad-slot="1566886288"></ins>
+                 <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                 </script>
                 <button type="submit" class="btn btn-primary" id="comment-form-submit">
                     Saglabāt
                 </button>

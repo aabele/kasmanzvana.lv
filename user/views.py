@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, UpdateView, ListView
+from django.views.generic import DetailView, UpdateView, ListView, DeleteView
 
 from phone.models import Comment
 from user import forms
@@ -70,3 +70,15 @@ class EmailFillView(mixins.LoginRequiredMixin, UpdateView):
         """
         messages.info(self.request, self.success_info)
         return super().form_valid(form)
+
+
+class DeleteUserView(mixins.LoginRequiredMixin, DeleteView):
+    """
+    User can delete his own profile
+    """
+    model = models.User
+    template_name = 'user/delete.html'
+    success_url = reverse_lazy('website:front')
+
+    def get_object(self, queryset=None):
+        return self.request.user

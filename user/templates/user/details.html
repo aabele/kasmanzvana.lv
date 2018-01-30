@@ -3,61 +3,72 @@
 {% block page_title %}{% include "phone/_snippets/user.html" with user=object %}{% endblock %}
 
 {% block body-header %}
-    <div class="jumbotron text-center" id="front-jumbo">
+    {% if request.user.is_authenticated %}
+        <div class="jumbotron text-center" id="front-jumbo">
 
-        <div>
-            {% include "website/utils/avatar.html" with size="100" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+            <div>
+                {% include "website/utils/avatar.html" with size="100" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
+            </div>
+
+            <h1>
+                <a href="{{ object.get_absolute_url }}">
+                    {% include "phone/_snippets/user.html" with user=object %}
+                </a>
+            </h1>
+            <p>Piereģistrējās {{ object.date_joined|date }}</p>
         </div>
-
-        <h1>
-            <a href="{{ object.get_absolute_url }}">
-                {% include "phone/_snippets/user.html" with user=object %}
-            </a>
-        </h1>
-        <p>Piereģistrējās {{ object.date_joined|date }}</p>
-    </div>
+    {% else %}
+        <div class="jumbotron text-center" id="front-jumbo">
+            <h1>
+                <a href="{{ object.get_absolute_url }}">
+                    Lai skatītu šo lapu ir jāpieslēdzas
+                </a>
+            </h1>
+        </div>
+    {% endif %}
 {% endblock %}
 {% block body %}
-    {% include "phone/_snippets/login-block.html" %}
-
-    <div class="row padding2">
-        <div class="col-md-6">
-            <h1>
-                <i class="fa fa-comments" aria-hidden="true"></i>
-                Komentēja
-            </h1>
-            <hr>
-            {% if object.last_15_comments %}
-                <div class="padding0-1">
-                    {% for comment in object.last_15_comments %}
-                        {% if not forloop.first %}<hr>{% endif %}
-                        {% include "website/includes/comment-card.html" with from_user_page=True %}
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>Pagaidām vēl nav informācijas.</p>
-            {% endif %}
+    {% if request.user.is_authenticated %}
+        <div class="row padding2">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fa fa-comments" aria-hidden="true"></i>
+                    Komentēja
+                </h1>
+                <hr>
+                {% if object.last_15_comments %}
+                    <div class="padding0-1">
+                        {% for comment in object.last_15_comments %}
+                            {% if not forloop.first %}<hr>{% endif %}
+                            {% include "website/includes/comment-card.html" with from_user_page=True %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Pagaidām vēl nav informācijas.</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h1>
+                    <i class="fa fa-comments" aria-hidden="true"></i>
+                    Seko numuriem
+                </h1>
+                <hr>
+                {% if object.following_list.all %}
+                    <div class="padding0-1">
+                        {% for number in object.following_list.all %}
+                            <h4>
+                                <a href="{{ number.get_absolute_url }}">
+                                    {{ COUNTRY_PREFIX }} {{ number }}
+                                </a>
+                            </h4>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Pagaidām vēl nav informācijas.</p>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-md-6">
-            <h1>
-                <i class="fa fa-comments" aria-hidden="true"></i>
-                Seko numuriem
-            </h1>
-            <hr>
-            {% if object.following_list.all %}
-                <div class="padding0-1">
-                    {% for number in object.following_list.all %}
-                        <h4>
-                            <a href="{{ number.get_absolute_url }}">
-                                {{ COUNTRY_PREFIX }} {{ number }}
-                            </a>
-                        </h4>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>Pagaidām vēl nav informācijas.</p>
-            {% endif %}
-        </div>
-    </div>
-
+    {% else %}
+        {% include "phone/_snippets/login-block.html" %}
+    {% endif %}
 {% endblock %}

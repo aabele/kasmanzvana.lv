@@ -41,6 +41,7 @@ class FrontPageView(TemplateView):
                                       .filter(pk__in=this_month_comments.values_list('phone_id', flat=True))
                                       .count())
         data['last_comment'] = models.Comment.objects.exclude(author__isnull=True).last()
+        data['latest_comments'] = models.Comment.objects.all().order_by('-id')[:10]
         return data
 
 

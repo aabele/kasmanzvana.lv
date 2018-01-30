@@ -5,22 +5,45 @@
 
     {% include "phone/_snippets/login-block.html" %}
 
-    <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
-        <div class="col-md-8 text-center">
 
-            <h2 class="text-left h1">
+    <div class="row {% if request.user.is_authenticated %}padding2{% endif %}">
+        <div class="col-md-8">
+
+            {% include "phone/comment/latest_comment_block.html" with object_list=latest_comments %}
+
+        </div>
+
+        <div class="col-md-4 text-center">
+
+            <p class="large-icon">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </p>
+            <h2>Nepalaid neko garām</h2>
+            <p>
+                Seko līdzi sev interesējošiem numuriem un saņem ziņu tiklīdz mēs par tiem uzzinām kautko jaunu.
+            </p>
+
+            <p class="large-icon">
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </p>
+            <h2>Vērtē numurus</h2>
+            <p>
+                Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
+            </p>
+
+            <p class="large-icon">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            </p>
+            <h2>Verificē savu numuru</h2>
+            <p>
+                (Drīzumā) Verificē savu numuru un pārvaldi to, uzzini sava numura sekotājus un noskaidro kāpēc,
+                publicē oficiālu kontaktinformāciju.
+            </p>
+
+            <h2 class="text-left padding1">
                 Statistika
             </h2>
-            <hr>
-
-            {% spaceless %}
-                {% for user in last_15_users %}
-                    <a href="{% include "phone/_snippets/user_link.html" %}" data-toggle="tooltip" data-placement="top" title="{% include "phone/_snippets/user.html" %}">
-                        {% include "website/utils/avatar.html" with size="30" avatar=user.socialaccount_set.first.get_avatar_url extra_class="img-circle" %}
-                    </a>
-                {% endfor %}
-
-                <div class="padding1">
+                <div class="text-left">
                     <p>
                         Pavisam reģistrējušies {{ total_registered_count }} lietotāji no tiem {{ this_month_registered }} šomēnes.
                     </p>
@@ -29,15 +52,6 @@
                     </p>
                 </div>
 
-            {% endspaceless %}
-        </div>
-
-        <div class="col-md-4">
-
-            <h1>{% include "phone/_snippets/user.html" with user=last_comment.author %}</h1>
-            <hr>
-
-            {% include "website/includes/comment-card.html" with comment=last_comment from_user_page=True truncate=True %}
 
             <div class="text-right">
                 <a href="{% url "phones:latest-comments" %}">
@@ -48,36 +62,6 @@
         </div>
     </div>
 
-    <div class="row padding3 text-center">
-        <div class="col-md-4">
-            <p class="large-icon">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>
-            </p>
-            <h2>Nepalaid neko garām</h2>
-            <p>
-                Seko līdzi sev interesējošiem numuriem un saņem ziņu tiklīdz mēs par tiem uzzinām kautko jaunu.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <p class="large-icon">
-                <i class="fa fa-users" aria-hidden="true"></i>
-            </p>
-            <h2>Vērtē numurus</h2>
-            <p>
-                Ar savu balsojumu maini numuru reitingu - lai visi zinātu vai šo numuru celt vai necelt.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <p class="large-icon">
-                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-            </p>
-            <h2>Verificē savu numuru</h2>
-            <p>
-                (Drīzumā) Verificē savu numuru un pārvaldi to, uzzini sava numura sekotājus un noskaidro kāpēc,
-                publicē oficiālu kontaktinformāciju.
-            </p>
-        </div>
-    </div>
 
 {% if not request.user.is_authenticated %}
     <div class="row text-center padding1">

@@ -11,6 +11,7 @@ class CommentForm(forms.ModelForm):
     Create commentary in a phone page
     """
     phone = forms.CharField()
+    follow = forms.BooleanField()
 
     def clean_phone(self):
         data = self.cleaned_data.get('phone')
@@ -25,5 +26,5 @@ class CommentForm(forms.ModelForm):
         fields = ['phone', 'body']
         widgets = {
             'phone': forms.HiddenInput,
-            'body': forms.Textarea,
+            'body': forms.Textarea(attrs={'rows': '4', 'placeholder': 'Dalies ar informāciju. Apraksti savu pieredzi ar šo numuru un palīdzi izlemt pārējiem lietotājiem - celt vai necelt.'}),
         }

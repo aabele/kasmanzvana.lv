@@ -1,10 +1,7 @@
-Vārds: {{ obj.name }}
-Epasts: {{ obj.email }}
+
+Admin URL: https://kasmanzvana.lv/{{ admin_prefix }}/phone/comment/{{ pk }}/change/
+Phone URL: https://kasmanzvana.lv/numurs/{{ phone }}/
 
 Komentārs:
-{{ obj.comment }}
 
---
-
-Rediģēšanas URL (derīgs nedēļu):
-{{ PUBLIC_URL }}{% url "admin.comment" comment_hash=obj.protected_hash %}
+{{ comment }}

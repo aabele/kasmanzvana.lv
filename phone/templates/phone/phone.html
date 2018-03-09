@@ -131,45 +131,6 @@
                     </h1>
                     <hr>
 
-                    <form method="post" action="{% url "phones:add_comment" %}" id="comment-form" style="display: none">
-
-                        {% csrf_token %}
-
-                        <input type="hidden" name="phone" value="{{ number }}">
-
-                        <div class="form-group{% if form.body.errors %} has-error{% endif %}">
-                            <label for="{{ form.body.auto_id }}" style="display: none">Komentārs</label>
-                            {{ form.body }}
-                            {% if form.body.errors %}
-                                <span id="error-{{ form.body.auto_id }}" class="help-block">
-                                    {% for error in form.body.errors %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </span>
-                            {% endif %}
-                        </div>
-
-                        <p class="small">
-                            Nerakstiet nepamatotas apsūdzības. Piemēram tādi viena vārda komentāri kā
-                            "krāpnieks" tiks dzēsti. Ja uzskatāt ka šo numuru izmanto kāds krāpnieks, tad
-                            paskaidrojiet arī kāpēc.
-                        </p>
-
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-format="fluid"
-                         data-ad-layout-key="-gw-b+2p-3v-1b"
-                         data-ad-client="ca-pub-5690991418198416"
-                         data-ad-slot="1566886288"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        <button type="submit" class="btn btn-primary" id="comment-form-submit">
-                            Saglabāt
-                        </button>
-                    </form>
-
                     {% if comment_page %}
                         <div class="padding1">
                             {% for comment in comment_page %}
@@ -214,6 +175,46 @@
                     {% else %}
                         <p>Pagaidām vēl nav informācijas.</p>
                     {% endif %}
+
+                                        <form method="post" action="{% url "phones:add_comment" %}" id="comment-form" style="display: none">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="phone" value="{{ number }}">
+
+                        <div class="form-group{% if form.body.errors %} has-error{% endif %}">
+                            <label for="{{ form.body.auto_id }}" style="display: none">Komentārs</label>
+                            {{ form.body }}
+                            {% if form.body.errors %}
+                                <span id="error-{{ form.body.auto_id }}" class="help-block">
+                                    {% for error in form.body.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <p class="small">
+                            Nerakstiet nepamatotas apsūdzības. Piemēram tādi viena vārda komentāri kā
+                            "krāpnieks" tiks dzēsti. Ja uzskatāt ka šo numuru izmanto kāds krāpnieks, tad
+                            paskaidrojiet arī kāpēc.
+                        </p>
+
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-gw-b+2p-3v-1b"
+                         data-ad-client="ca-pub-5690991418198416"
+                         data-ad-slot="1566886288"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <button type="submit" class="btn btn-primary" id="comment-form-submit">
+                            Saglabāt
+                        </button>
+                    </form>
+
                 </div>
                 <div class="col-md-4">
                     <h1>

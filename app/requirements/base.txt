@@ -5,7 +5,7 @@ celery==3.1.25
 django-twitter-bootstrap==3.3.0
 django-bootstrap-form==3.2.1
 django_compressor==2.1.1
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 sorl-thumbnail==12.3
 Pillow==4.1.1
 django-robots==3.0

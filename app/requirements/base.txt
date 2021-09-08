@@ -7,5 +7,5 @@ django-bootstrap-form==3.2.1
 django_compressor==2.1.1
 djangorestframework==3.6.3
 sorl-thumbnail==12.3
-Pillow==4.1.1
+Pillow==8.3.2
 django-robots==3.0

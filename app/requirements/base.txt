@@ -1,7 +1,7 @@
 django==1.11.4
 django-allauth==0.32.0
 hashids==1.2.0
-celery==3.1.25
+celery==5.2.2
 django-twitter-bootstrap==3.3.0
 django-bootstrap-form==3.2.1
 django_compressor==2.1.1
